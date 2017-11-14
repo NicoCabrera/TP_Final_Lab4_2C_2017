@@ -43,4 +43,5 @@ testem.log
 Thumbs.db
 
 # My content
-/imagenesprueba
+./events-rooms/imagenesprueba/
+TODO.txt
