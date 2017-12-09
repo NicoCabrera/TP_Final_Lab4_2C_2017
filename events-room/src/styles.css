@@ -1,1 +1,58 @@
-/* You can add global styles to this file, and also import other style files */
+/* Fonts */
+@font-face{
+    font-family: palace;
+    src: url("./assets/fonts/palace.ttf");
+}
+.text-palace{
+    font-family: palace;
+}
+
+@font-face{
+    font-family: events;
+    src: url("./assets/fonts/events.ttf");
+}
+.text-events{
+    font-family: events;
+}
+
+.parallax-container {
+    min-height: 380px;
+    line-height: 0;
+    height: auto;
+    color: rgba(255,255,255,.9);
+  }
+
+  .subtitle-transparent-container {
+    background-color: rgba(0,0,0,.3);
+  }
+
+  .parallax-container .section {
+    width: 100%;
+  }
+
+  @media only screen and (max-width : 992px) {
+    .parallax-container .section {
+      position: absolute;
+      top: 40%;
+    }
+    #index-banner .section {
+      top: 10%;
+    }
+  }
+
+  @media only screen and (max-width : 600px) {
+    #index-banner .section {
+      top: 0;
+    }
+  }
+
+  .icon-block {
+    padding: 0 15px;
+  }
+  .icon-block .material-icons {
+    font-size: inherit;
+  }
+  
+  footer.page-footer {
+    margin: 0;
+  }
