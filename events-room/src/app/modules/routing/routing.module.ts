@@ -4,6 +4,8 @@ import { RouterModule, Routes, RouterLinkActive } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from '../../components/home/home.component';
 import { EventRoomViewerComponent } from '../../components/event-room-viewer/event-room-viewer.component';
+import { RegisterComponent } from '../../components/register/register.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 const appRoutes: Routes = [
   {
@@ -17,17 +19,25 @@ const appRoutes: Routes = [
   { 
     path: "eventRoomViewer",
     component: EventRoomViewerComponent
+  },
+  { 
+    path: "register",
+    component: RegisterComponent
   }
 ];
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   declarations: [
     HomeComponent,
-    EventRoomViewerComponent
+    EventRoomViewerComponent,
+    RegisterComponent,
+    FooterComponent
   ]
 })
 export class RoutingModule { }

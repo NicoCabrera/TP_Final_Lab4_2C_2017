@@ -1,0 +1,15 @@
+.bordered-form{
+    border-color: #03a9f4;
+    border-style: solid;
+    border-width: 5px;
+}
+
+.send-btn-margin{
+    margin: 2.5em 0;
+    width: 100%;
+}
+
+.btn-test{
+    width: 100%;
+    margin-bottom: 2.5em;
+}
