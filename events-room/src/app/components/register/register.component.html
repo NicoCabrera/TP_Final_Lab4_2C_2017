@@ -11,35 +11,41 @@
   </div>
 </nav>
 <div class="container">
-  <form class="col s12" [formGroup]="form" novalidate>
-    <div class="row">
-      <div class="col s12">
-        <h5>Datos del nuevo usuario</h5>
-      </div>
-      <div class="input-field col s12">
-        <i class="material-icons prefix">account_circle</i>
-        <input id="icon_prefix" type="text" formControlName="username" data-length="50" [(ngModel)]="user.username">
-        <label for="icon_prefix" data-error="Usuario no válido">Nombre de usuario</label>
-      </div>
-      <div class="input-field col s12">
-        <i class="material-icons prefix">email</i>
-        <input id="icon_telephone" type="email" formControlName="email" data-length="50" [(ngModel)]="user.email">
-        <label for="icon_telephone" data-error="El mail no es válido">Correo electrónico</label>
-      </div>
-      <div class="input-field col s12">
-        <i class="material-icons prefix">vpn_key</i>
-        <input id="icon_password" type="password" formControlName="password" data-length="50" [(ngModel)]="user.password">
-        <label for="icon_telephone" data-error="El contraseña inválida">Contraseña</label>
+  <div class="row">
+    <div class="col m2"></div>
+    <div class="col s12 m8">
+      <form class="col s12" [formGroup]="form" novalidate>
+        <div class="row">
+          <div class="col s12">
+            <h5 class="center-align">Datos del nuevo usuario</h5>
+          </div>
+          <div class="input-field col s12">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="icon_prefix" type="text" formControlName="username" data-length="50" [(ngModel)]="user.username">
+            <label for="icon_prefix" data-error="Usuario no válido">Nombre de usuario</label>
+          </div>
+          <div class="input-field col s12">
+            <i class="material-icons prefix">email</i>
+            <input id="icon_telephone" type="email" formControlName="email" data-length="50" [(ngModel)]="user.email">
+            <label for="icon_telephone" data-error="El mail no es válido">Correo electrónico</label>
+          </div>
+          <div class="input-field col s12">
+            <i class="material-icons prefix">vpn_key</i>
+            <input id="icon_password" type="password" formControlName="password" data-length="50" [(ngModel)]="user.password">
+            <label for="icon_telephone" data-error="El contraseña inválida">Contraseña</label>
+          </div>
+        </div>
+
+        <button class="btn waves-effect waves-red send-btn-margin hoverable light-blue darken-1" (click)="submitOnClick()">Enviar</button>
+        <button class="btn waves-effect waves-red btn-test hoverable light-blue darken-1" (click)="setTestValue()">Valores de prueba</button>
+      </form>
+      <!-- Spinner -->
+      <div class="progress" *ngIf="showSpinner">
+        <div class="indeterminate"></div>
       </div>
     </div>
-    
-    <button class="btn waves-effect waves-red send-btn-margin hoverable light-blue darken-1" (click)="submitOnClick()">Enviar</button>
-    <button class="btn waves-effect waves-red btn-test hoverable light-blue darken-1" (click)="setTestValue()">Valores de prueba</button>
-  </form>
-  <!-- Spinner -->
-  <div class="progress" *ngIf="showSpinner">
-    <div class="indeterminate"></div>
   </div>
+  <div class="col m2"></div>
 </div>
 <app-footer></app-footer>
 
