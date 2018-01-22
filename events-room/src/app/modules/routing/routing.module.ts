@@ -6,6 +6,7 @@ import { HomeComponent } from '../../components/home/home.component';
 import { EventRoomViewerComponent } from '../../components/event-room-viewer/event-room-viewer.component';
 import { RegisterComponent } from '../../components/register/register.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { MapComponent } from '../../components/map/map.component';
 
 const appRoutes: Routes = [
   {
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     HomeComponent,
     EventRoomViewerComponent,
     RegisterComponent,
-    FooterComponent
+    FooterComponent,
+    MapComponent
   ]
 })
 export class RoutingModule { }

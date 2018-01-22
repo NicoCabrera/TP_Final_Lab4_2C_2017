@@ -7,8 +7,6 @@ import { AppComponent } from './app.component';
 import { WebService } from './services/web.service';
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent
@@ -23,3 +21,5 @@ import { WebService } from './services/web.service';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

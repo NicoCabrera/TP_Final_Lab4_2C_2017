@@ -17,14 +17,9 @@
         <h5>Datos del nuevo usuario</h5>
       </div>
       <div class="input-field col s12">
-        <i class="material-icons prefix">edit</i>
-        <input id="icon_prefix" type="text" formControlName="firstname" data-length="50" [(ngModel)]="user.firstname">
-        <label for="icon_prefix" data-error="Usuario no válido">Nombre/s</label>
-      </div>
-      <div class="input-field col s12">
-        <i class="material-icons prefix">edit</i>
-        <input id="icon_prefix" type="text" formControlName="lastname" data-length="50" [(ngModel)]="user.lastname">
-        <label for="icon_prefix" data-error="Usuario no válido">Apellido</label>
+        <i class="material-icons prefix">account_circle</i>
+        <input id="icon_prefix" type="text" formControlName="username" data-length="50" [(ngModel)]="user.username">
+        <label for="icon_prefix" data-error="Usuario no válido">Nombre de usuario</label>
       </div>
       <div class="input-field col s12">
         <i class="material-icons prefix">email</i>
@@ -32,32 +27,12 @@
         <label for="icon_telephone" data-error="El mail no es válido">Correo electrónico</label>
       </div>
       <div class="input-field col s12">
-        <i class="material-icons prefix">account_circle</i>
-        <input id="icon_prefix" type="text" formControlName="username" data-length="50" [(ngModel)]="user.username">
-        <label for="icon_prefix" data-error="Usuario no válido">Nombre de usuario</label>
-      </div>
-      <div class="input-field col s12">
         <i class="material-icons prefix">vpn_key</i>
-        <input id="icon_telephone" type="password" formControlName="password" data-length="50" [(ngModel)]="user.password">
+        <input id="icon_password" type="password" formControlName="password" data-length="50" [(ngModel)]="user.password">
         <label for="icon_telephone" data-error="El contraseña inválida">Contraseña</label>
       </div>
     </div>
-    <!-- Datos del domicilio -->
-    <div class="col s12">
-      <h5>Datos del domicilio</h5>
-    </div>
-    <div class="input-field col s12">
-      <input id="icon_prefix" type="text" formControlName="city" data-length="50">
-      <label for="icon_prefix" data-error="Usuario no válido">Ciudad/Localidad</label>
-    </div>
-    <div class="input-field col s12">
-      <input id="icon_prefix" type="text" formControlName="street" data-length="50">
-      <label for="icon_prefix" data-error="Usuario no válido">Calle</label>
-    </div>
-    <div class="input-field col s12">
-      <input id="icon_prefix" type="text" formControlName="number" data-length="10">
-      <label for="icon_prefix" data-error="Usuario no válido">Número</label>
-    </div>
+    
     <button class="btn waves-effect waves-red send-btn-margin hoverable light-blue darken-1" (click)="submitOnClick()">Enviar</button>
     <button class="btn waves-effect waves-red btn-test hoverable light-blue darken-1" (click)="setTestValue()">Valores de prueba</button>
   </form>

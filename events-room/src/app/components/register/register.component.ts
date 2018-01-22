@@ -30,14 +30,9 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      firstname: new FormControl(this.user.firstname, [Validators.required, Validators.maxLength(50)]),
-      lastname: new FormControl(this.user.lastname, [Validators.required, Validators.maxLength(50)]),
+      username: new FormControl(this.user.username, [Validators.required, Validators.maxLength(50)]),
       email: new FormControl(this.user.email, [Validators.required, Validators.maxLength(50), Validators.email]),
       password: new FormControl(this.user.password, [Validators.required, Validators.maxLength(50)]),
-      username: new FormControl(this.user.username, [Validators.required, Validators.maxLength(50)]),
-      street: new FormControl(this.user.address.street, [Validators.maxLength(50)]),
-      number: new FormControl(this.user.address.number, [Validators.maxLength(10)]),
-      city: new FormControl(this.user.address.city, [Validators.maxLength(50)])
     });
 
     this.initCharacterCount();
@@ -51,28 +46,38 @@ export class RegisterComponent implements OnInit {
     this.webService.post(this.user, "http://localhost/apiFinal/apirest/login/signup")
       .then((data) => {
         if (data.status == 200) {
+          this.headerMsj = data.message;
+          this.showSuccessMessage();
         } else if (data.status == 0) {
           this.headerMsj = data.message;
-          $('.modal').modal('open');
+          this.showErrorMessages();
         } else {
           this.headerMsj = data.message;
           this.errorMessages = data.invalid;
-          $('.modal').modal('open');
+          this.showErrorMessages();
         }
         this.showSpinner = false;
         $('.btn').removeClass('disabled');
       });
+
+  }
+
+  showErrorMessages(){
+    $('.modal-content').removeClass('green');
+    $('.modal-content').addClass('red');
+    $('.modal').modal('open');
+  }
+
+  showSuccessMessage(){
+    $('.modal-content').removeClass('red');
+    $('.modal-content').addClass('green');
+    $('.modal').modal('open');
   }
 
   setTestValue() {
-    this.form.get("firstname").setValue("Primer nombre");
-    this.form.get("lastname").setValue("Apellido");
+    this.form.get("username").setValue("Usuario Pruebas");
     this.form.get("email").setValue("correo@correo.com.ar");
     this.form.get("password").setValue("contraseñasuperloca123456");
-    this.form.get("username").setValue("Pedro El Escamoso");
-    this.form.get("street").setValue("Mi Calle");
-    this.form.get("number").setValue(123545);
-    this.form.get("city").setValue("Buenos Aires");
     $("label").addClass("active");
   }
 
@@ -91,7 +96,6 @@ export class RegisterComponent implements OnInit {
   clearModalMessages(){
     this.headerMsj = "";
     this.errorMessages = [];
-
   }
 
 }
