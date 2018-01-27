@@ -35,8 +35,21 @@
             <label for="icon_telephone" data-error="El contraseña inválida">Contraseña</label>
           </div>
         </div>
-
-        <button class="btn waves-effect waves-red send-btn-margin hoverable light-blue darken-1" (click)="submitOnClick()">Enviar</button>
+        <div class="row">
+          <div class="col m3"></div>
+          <div class="col s12 m6">
+          </div>
+          <div class="col m3"></div>
+        </div>
+        <div class="row">
+          <div class="col s1 m2"></div>
+          <div class="col s8 m6">
+            <re-captcha (resolved)="resolved($event)" siteKey="6LdUXTwUAAAAAKA6J4cW2JlLYaXe5qC_SN5S_NXC"></re-captcha>
+          </div>
+          <div class="col s2 m3"></div>
+        </div>
+        
+        <button class="btn waves-effect waves-red send-btn-margin hoverable light-blue darken-1" (click)="submitOnClick()" [disabled]="form.invalid || !isValid">Enviar</button>
         <button class="btn waves-effect waves-red btn-test hoverable light-blue darken-1" (click)="setTestValue()">Valores de prueba</button>
       </form>
       <!-- Spinner -->

@@ -7,7 +7,9 @@ import { EventRoomViewerComponent } from '../../components/event-room-viewer/eve
 import { RegisterComponent } from '../../components/register/register.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { MapComponent } from '../../components/map/map.component';
-
+//Captcha
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
 const appRoutes: Routes = [
   {
     path: "",
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    RecaptchaModule.forRoot()
   ],
   declarations: [
     HomeComponent,
@@ -40,6 +43,12 @@ const appRoutes: Routes = [
     RegisterComponent,
     FooterComponent,
     MapComponent
-  ]
+  ],
+  providers: [
+    {
+      provide: RECAPTCHA_LANGUAGE,
+      useValue: 'es', // Para setear el idioma
+    },
+  ],
 })
 export class RoutingModule { }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, RequestOptions } from '@angular/http';
+import { Http, Response, RequestOptions , Headers} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -21,14 +21,9 @@ export class WebService {
 
   post(data: Object, url) {
     return this.http.post(url, data)
-      .toPromise().then((data: Response) => {
-
-        let dataResponse = new DataResponse();
-        let parsedData = data.json();
-        dataResponse.message = parsedData.message;
-        dataResponse.status = data['status'];
-        return dataResponse;
-      }).catch((data: Response) => {
+      .toPromise()
+      .then(this.extractData)
+      .catch((data: Response) => {
 
         let dataResponse = new DataResponse();
         let parsedData = data.json();
@@ -46,6 +41,30 @@ export class WebService {
       });
   }
 
+  postCaptcha(response:string,secret:string, url) {
+    let formData: FormData = new FormData();
+    formData.append('secret', secret);
+    formData.append('response', response);
+    return this.http.post(url, formData)
+      .toPromise()
+      .then(this.extractData)
+      .catch((data: Response) => {
+
+        let dataResponse = new DataResponse();
+        let parsedData = data.json();
+
+        if (data['status'] == 404) {
+          dataResponse.message = parsedData.message;
+          dataResponse.invalid = parsedData.invalid;
+          dataResponse.status = data['status'];
+        }
+        if (data['status'] == 0) {
+          dataResponse.message = "Error en la conexión. Intentelo nuevamente.";
+        }
+        dataResponse.status = parsedData.status;
+        return dataResponse;
+      });
+  }
 
   postWithJWT(data: Object, url) {
     return this.http.post(url, data)
