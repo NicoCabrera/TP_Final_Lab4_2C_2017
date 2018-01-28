@@ -8,7 +8,7 @@ import { WebService } from './services/web.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent  
   ],
   imports: [
     BrowserModule,

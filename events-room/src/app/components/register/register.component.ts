@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
     this.showSpinner = false;
     this.errorMessages = new Array<string>();
     this.headerMsj = "";
-    this.isValid = false;
+    this.isValid = true;
   }
 
   ngOnInit() {
@@ -65,7 +65,7 @@ export class RegisterComponent implements OnInit {
         } else {
           this.headerMsj = data.message;
           localStorage.setItem('token', data.jwt);
-          this.showSuccessMessage();
+          this.router.navigateByUrl("/registered-user");
         }
         this.showSpinner = false;
         $('.btn').removeClass('disabled');
@@ -76,12 +76,6 @@ export class RegisterComponent implements OnInit {
   showErrorMessages() {
     $('.modal-content').removeClass('green');
     $('.modal-content').addClass('red');
-    $('.modal').modal('open');
-  }
-
-  showSuccessMessage() {
-    $('.modal-content').removeClass('red');
-    $('.modal-content').addClass('green');
     $('.modal').modal('open');
   }
 

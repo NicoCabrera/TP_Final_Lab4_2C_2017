@@ -10,6 +10,8 @@ import { MapComponent } from '../../components/map/map.component';
 //Captcha
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
+import { RegisteredUserComponent } from '../../components/registered-user/registered-user.component';
+import { LoginComponent } from '../../components/login/login.component';
 const appRoutes: Routes = [
   {
     path: "",
@@ -26,6 +28,14 @@ const appRoutes: Routes = [
   { 
     path: "register",
     component: RegisterComponent
+  },
+  { 
+    path: "registered-user",
+    component: RegisteredUserComponent
+  },
+  { 
+    path: "login",
+    component: LoginComponent
   }
 ];
 
@@ -42,7 +52,9 @@ const appRoutes: Routes = [
     EventRoomViewerComponent,
     RegisterComponent,
     FooterComponent,
-    MapComponent
+    MapComponent,
+    RegisteredUserComponent,
+    LoginComponent
   ],
   providers: [
     {
