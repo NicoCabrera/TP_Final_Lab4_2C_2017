@@ -26,19 +26,27 @@ export class LoungeReservationComponent implements OnInit {
     this.showSpinner = false;
     this.showGuestList = false;
     this.clearGuestData();
-    this.configPickDate();
+    this.checkReservations();
     this.initSelect();
     this.initModal();
     this.totalGuests = 0;
   }
 
   ngOnInit() {
-
+    
   }
 
   clearGuestData() {
     this.guestName = "";
     this.guestLastname = "";
+  }
+
+  checkReservations(){
+    this.webService.post({jwt: localStorage.getItem("token")},"http://localhost/apiFinal/apirest/reservation/checkreservations").then(
+      (data)=>{
+        this.configPickDate(data.reservedDates);
+      }
+    );
   }
 
   initSelect() {
@@ -53,7 +61,7 @@ export class LoungeReservationComponent implements OnInit {
     });
   }
 
-  configPickDate() {
+  configPickDate(disableDays:Array<IMyDate>) {
     let today = new Date();
     let until = { year: today.getFullYear(), month: today.getMonth() + 1, day: today.getDate() };
 
@@ -64,11 +72,11 @@ export class LoungeReservationComponent implements OnInit {
       showTodayBtn: false,
       maxYear: until.year + 1,
       minYear: until.year,
-      disableDays: [],
+      disableDays: disableDays,
       width: "100%",
       editableDateField: false,
       disableUntil: until,
-      showClearDateBtn: false
+      showClearDateBtn: false,
     };
   }
 
@@ -98,7 +106,6 @@ export class LoungeReservationComponent implements OnInit {
    
     this.webService.post(newReservation,"http://localhost/apiFinal/apirest/reservation/add").then(
       data =>{
-         console.log(data);
          this.showSpinner = false;
          $('.modal').modal('open');
          $('.btn').removeClass('disabled');
