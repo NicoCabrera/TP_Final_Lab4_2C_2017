@@ -38,20 +38,10 @@ export class RegisterComponent implements OnInit {
       email: new FormControl(this.user.email, [Validators.required, Validators.maxLength(50), Validators.email]),
       password: new FormControl(this.user.password, [Validators.required, Validators.maxLength(50)]),
     });
-    this.getIpAddress();
     this.initCharacterCount();
     this.initModal();
   }
 
-
-  getIpAddress() {
-
-    /*
-    $.getJSON('//freegeoip.net/json/?callback=?', (data) => {
-      this.ipAddess = data.ip;
-    });
-    */
-  }
   submitOnClick() {
     this.clearModalMessages();
     this.showSpinner = true;
@@ -65,7 +55,7 @@ export class RegisterComponent implements OnInit {
         } else {
           this.headerMsj = data.message;
           localStorage.setItem('token', data.jwt);
-          this.router.navigateByUrl("/registered-user");
+          this.router.navigateByUrl("/registered-user/eventRoomViewer");
         }
         this.showSpinner = false;
         $('.btn').removeClass('disabled');

@@ -72,3 +72,8 @@
     width: 100%;
     margin-bottom: 2.5em;
 }
+
+agm-map {
+  height: 400px;
+  width: 100%;
+}

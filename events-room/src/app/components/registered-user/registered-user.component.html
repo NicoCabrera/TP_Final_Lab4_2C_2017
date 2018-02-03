@@ -2,18 +2,27 @@
   <li>
     <div class="user-view">
       <div class="background">
-        <img src="assets/img/sillones.jpg">
+        <img src="assets/img/bg1-menu-aside.jpg">
       </div>
-        <a href="#!user"><img class="circle" src="assets/img/woman-user-avatar.jpg"></a>
-        <a href="#!name"><span class="white-text name">John Doe</span></a>
-        <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+        <a><img class="circle" src="assets/img/men-user-avatar.jpg"></a>
+        <a><span class="white-text name">{{user.username}}</span></a>
+        <a><span class="white-text email">{{user.email}}</span></a>
     </div>
   </li>
-    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-    <li><a href="#!">Second Link</a></li>
-    <li><div class="divider"></div></li>
-    <li><a class="subheader">Subheader</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a><i class="material-icons">cloud</i>MENU</a></li>
+    <li *ngFor="let permission of permissions"><a routerLink="/registered-user/{{permission.uri}}" routerLinkActive="active">{{permission.description}}</a></li>
+    <li><a (click)="logout()">Cerrar sesión</a></li>
   </ul>
-<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-      
+  
+  <nav>
+    <div class="nav-wrapper deep-purple darken-2">
+      <a class="brand-logo text-palace left">PALACE EVENTUAL</a>
+      <ul id="nav-mobile" >
+        <li class="right hide-on-med-and-down"><a (click)="logout()">Cerrar sesión</a></li><li class="right"><a data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a></li>
+        <li *ngFor="let permission of permissions" class="right hide-on-med-and-down" ><a routerLink="/registered-user/{{permission.uri}}" routerLinkActive="active">{{permission.description}}</a></li>
+      </ul>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+

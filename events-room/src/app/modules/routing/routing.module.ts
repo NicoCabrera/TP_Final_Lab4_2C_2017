@@ -12,6 +12,12 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
 import { RegisteredUserComponent } from '../../components/registered-user/registered-user.component';
 import { LoginComponent } from '../../components/login/login.component';
+import { VerifyJwtService } from '../../services/verify-jwt.service';
+import { LoungeReservationComponent } from '../../components/lounge-reservation/lounge-reservation.component';
+import { ReservationsViewerComponent } from '../../components/reservations-viewer/reservations-viewer.component';
+import { AgmCoreModule } from '@agm/core/core.module';
+import { MyDatePickerModule } from 'mydatepicker';
+//DatePicker
 const appRoutes: Routes = [
   {
     path: "",
@@ -21,19 +27,30 @@ const appRoutes: Routes = [
     path: "home",
     component: HomeComponent
   },
-  { 
-    path: "eventRoomViewer",
-    component: EventRoomViewerComponent
-  },
-  { 
+  {
     path: "register",
     component: RegisterComponent
   },
-  { 
+  {
     path: "registered-user",
-    component: RegisteredUserComponent
+    component: RegisteredUserComponent,
+    canActivate: [VerifyJwtService],
+    children: [
+      {
+        path: "eventRoomViewer",
+        component: EventRoomViewerComponent
+      },
+      {
+        path: "loungeReservation",
+        component: LoungeReservationComponent
+      },
+      {
+        path: "reservationsViewer",
+        component: ReservationsViewerComponent
+      },
+    ]
   },
-  { 
+  {
     path: "login",
     component: LoginComponent
   }
@@ -45,7 +62,11 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
-    RecaptchaModule.forRoot()
+    RecaptchaModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAvdm1fYge8bF93jTOmaPYaSUdVbnVZam0'
+    }),
+    MyDatePickerModule
   ],
   declarations: [
     HomeComponent,
@@ -54,13 +75,16 @@ const appRoutes: Routes = [
     FooterComponent,
     MapComponent,
     RegisteredUserComponent,
-    LoginComponent
+    LoginComponent,
+    LoungeReservationComponent,
+    ReservationsViewerComponent
   ],
   providers: [
     {
       provide: RECAPTCHA_LANGUAGE,
       useValue: 'es', // Para setear el idioma
     },
+    VerifyJwtService
   ],
 })
 export class RoutingModule { }

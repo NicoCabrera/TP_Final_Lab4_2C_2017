@@ -68,7 +68,10 @@ export class LoginComponent implements OnInit {
         } else {
           this.headerMsj = data.message;
           localStorage.setItem('token', data.jwt);
-          this.router.navigateByUrl("/registered-user");
+          localStorage.setItem('username', data.username);
+          localStorage.setItem('email', data.email);
+          localStorage.setItem('permissions', JSON.stringify(data.permissions));
+          this.router.navigateByUrl("/registered-user/eventRoomViewer");
         }
         this.showSpinner = false;
         $('.btn').removeClass('disabled');
