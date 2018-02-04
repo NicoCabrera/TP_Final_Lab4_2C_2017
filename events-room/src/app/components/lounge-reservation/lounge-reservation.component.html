@@ -52,7 +52,7 @@
               <li class="collection-header"><h6 class="center-align">Lista de invitados</h6></li>
               
             <li class="collection-item" *ngFor="let guest of reservationData.guestList;let i = index">
-                <div>{{guest}}
+                <div>{{guest.name}}  {{guest.lastname}}
                   <a href="javascript:void(0);" class="secondary-content red-text">
                     <i class="material-icons" (click)="deleteGuest(i)">clear</i>
                   </a>

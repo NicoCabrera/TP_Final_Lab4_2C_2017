@@ -77,3 +77,14 @@ agm-map {
   height: 400px;
   width: 100%;
 }
+
+.my-reservations{
+  margin-top:-10px;
+  background-image: url('./assets/img/bg-10.png');
+  height: 600px;
+  overflow: auto;
+}
+.pad-top{
+  padding-top: 50px;
+  
+}

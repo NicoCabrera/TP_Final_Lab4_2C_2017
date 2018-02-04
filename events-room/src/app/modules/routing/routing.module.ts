@@ -6,7 +6,6 @@ import { HomeComponent } from '../../components/home/home.component';
 import { EventRoomViewerComponent } from '../../components/event-room-viewer/event-room-viewer.component';
 import { RegisterComponent } from '../../components/register/register.component';
 import { FooterComponent } from '../../components/footer/footer.component';
-import { MapComponent } from '../../components/map/map.component';
 //Captcha
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
@@ -17,6 +16,7 @@ import { LoungeReservationComponent } from '../../components/lounge-reservation/
 import { ReservationsViewerComponent } from '../../components/reservations-viewer/reservations-viewer.component';
 import { AgmCoreModule } from '@agm/core/core.module';
 import { MyDatePickerModule } from 'mydatepicker';
+import { GuestListEditorComponent } from '../../components/guest-list-editor/guest-list-editor.component';
 //DatePicker
 const appRoutes: Routes = [
   {
@@ -48,6 +48,10 @@ const appRoutes: Routes = [
         path: "reservationsViewer",
         component: ReservationsViewerComponent
       },
+      {
+        path: "guestListEditorComponent",
+        component: GuestListEditorComponent
+      },
     ]
   },
   {
@@ -73,11 +77,11 @@ const appRoutes: Routes = [
     EventRoomViewerComponent,
     RegisterComponent,
     FooterComponent,
-    MapComponent,
     RegisteredUserComponent,
     LoginComponent,
     LoungeReservationComponent,
-    ReservationsViewerComponent
+    ReservationsViewerComponent,
+    GuestListEditorComponent
   ],
   providers: [
     {

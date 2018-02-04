@@ -1,3 +1,18 @@
-<p>
-  reservations-viewer works!
-</p>
+<div class="my-reservations">
+  <div class="container pad-top">
+    <ul class="collection">
+      <li class="collection-item avatar transparent" *ngFor="let reservation of reservations">
+        <div class="row white-text">
+          <div class="col m8 s12">
+            <i class="material-icons circle green">event</i>
+            <span class="title">Fecha programada: {{reservation.date}}</span>
+            <p>Lugar: {{reservation.description}}</p>
+          </div>
+          <div class="col m4 s12">
+            <a class="waves-effect waves-light btn green darken-1" (click)="guestListEditor(reservation)">Lista de invitados</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

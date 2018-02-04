@@ -26,14 +26,14 @@ export class LoungeReservationComponent implements OnInit {
     this.showSpinner = false;
     this.showGuestList = false;
     this.clearGuestData();
-    this.checkReservations();
+    
     this.initSelect();
     this.initModal();
     this.totalGuests = 0;
   }
 
   ngOnInit() {
-    
+    this.checkReservations();
   }
 
   clearGuestData() {
@@ -122,13 +122,10 @@ export class LoungeReservationComponent implements OnInit {
     return rv;
   }
 
-  showGuestListValue() {
-    console.log(this.showGuestList);
-  }
 
   addGuest() {
     if (this.validateGuest()) {
-      let guest: string = this.guestName + " " + this.guestLastname;
+      let guest = {name: this.guestName, lastname: this.guestLastname };
       this.reservationData.guestList.push(guest);
       this.clearGuestData();
       this.totalGuests = this.reservationData.guestList.length;
