@@ -9,10 +9,12 @@ import { WebService } from '../../services/web.service';
 })
 export class ReservationsViewerComponent implements OnInit {
   reservations:Array<any>;
+  showSpinner:boolean;
 
 
   constructor(private router: Router, private webService: WebService) {
     this.reservations = new Array<any>();
+    this.showSpinner = true;
    }
 
   ngOnInit() {
@@ -20,6 +22,7 @@ export class ReservationsViewerComponent implements OnInit {
     this.webService.post({jwt:localStorage.getItem("token")}, "http://localhost/apiFinal/apirest/reservation/myreservations").then(
       (data)=>{
         this.reservations = data.reservations;
+        this.showSpinner = false;
       });
   }
 

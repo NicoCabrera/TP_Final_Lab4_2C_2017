@@ -5,17 +5,19 @@
     <div class="col s12 m8">
       <form class="col s12" novalidate>
         <div class="row">
-          <div class="col s12 m6 input-field">
+          <div class="col s12 input-field">
             <h6>Elige el salón</h6>
-            <select [(ngModel)]="reservationData.locationId" name="locationId">
+            <select [(ngModel)]="reservationData.locationId" name="locationId" (change)="selectOnChange($event)">
               <option value="151531">CABA</option>
               <option value="265840">Zona Sur</option>
               <option value="650540">Zona Norte</option>
             </select>
           </div>
-          <div class="col s12 m6 input-field">
+          <div class="col s12 input-field">
             <h6 style="margin-bottom:18px">Elige una fecha disponible</h6>
-            <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="reservedDate" id="mydate"></my-date-picker>
+            <my-date-picker *ngIf="currentZoneSelected == 'Zona Norte'"  name="mydateNORTE" [options]="myDatePickerOptionsNORTE" [(ngModel)]="reservedDate"></my-date-picker>
+            <my-date-picker *ngIf="currentZoneSelected == 'Zona Sur'" name="mydateSUR" [options]="myDatePickerOptionsSUR" [(ngModel)]="reservedDate"></my-date-picker>
+            <my-date-picker *ngIf="currentZoneSelected == 'CABA'" name="mydateCABA" [options]="myDatePickerOptions" [(ngModel)]="reservedDate" id="mydate"></my-date-picker>
           </div>
         </div>
       </form>

@@ -1,17 +1,5 @@
-<nav>
-  <div class="nav-wrapper black">
-    <a class="brand-logo text-palace left">PALACE EVENTUAL</a>
-    <ul id="nav-mobile" class="right hide-on-small-and-down">
-      <li>
-        <a routerLink="/login" class="hoverable">Ingresar</a>
-      </li>
-      <li>
-        <a routerLink="/register" class="hoverable">Registrarse</a>
-      </li>
-    </ul>
-  </div>
-</nav>
 
+<app-home-header></app-home-header>
 <div id="index-banner" class="parallax-container">
   <div class="section no-pad-bot subtitle-transparent-container">
     <div class="container">
@@ -22,7 +10,7 @@
         <h5 class="header col s12 light white-text ">Casamientos, cumpleaños, despedidas de fin de año y todo tipo de eventos.</h5>
       </div>
       <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light deep-purple darken-4 hoverable">Ver salones</a>
+        <a routerLink="/unregistered-room-viewer" id="download-button" class="btn-large waves-effect waves-light deep-purple darken-4 hoverable">Ver salones</a>
       </div>
       <br>
       <br>
@@ -102,16 +90,3 @@
 
 <app-footer></app-footer>
 
-<div class="fixed-action-btn toolbar hide-on-med-and-up">
-  <a class="btn-floating btn-large deep-purple darken-2">
-    <i class="large material-icons">menu</i>
-  </a>
-  <ul>
-    <li class="waves-effect waves-light">
-      <a routerLink="/login" class="btn waves-effect waves-light">Ingresar</a>
-    </li>
-    <li class="waves-effect waves-light">
-      <a routerLink="/register" class="btn waves-effect waves-light">Registrarse</a>
-    </li>
-  </ul>
-</div>

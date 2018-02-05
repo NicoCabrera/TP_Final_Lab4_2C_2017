@@ -17,6 +17,8 @@ import { ReservationsViewerComponent } from '../../components/reservations-viewe
 import { AgmCoreModule } from '@agm/core/core.module';
 import { MyDatePickerModule } from 'mydatepicker';
 import { GuestListEditorComponent } from '../../components/guest-list-editor/guest-list-editor.component';
+import { HomeHeaderComponent } from '../../components/home-header/home-header.component';
+import { UnregisteredEventRoomViewerComponent } from '../../components/unregistered-event-room-viewer/unregistered-event-room-viewer.component';
 //DatePicker
 const appRoutes: Routes = [
   {
@@ -26,6 +28,10 @@ const appRoutes: Routes = [
   {
     path: "home",
     component: HomeComponent
+  },
+  {
+    path: "unregistered-room-viewer",
+    component: UnregisteredEventRoomViewerComponent
   },
   {
     path: "register",
@@ -74,6 +80,7 @@ const appRoutes: Routes = [
   ],
   declarations: [
     HomeComponent,
+    HomeHeaderComponent,
     EventRoomViewerComponent,
     RegisterComponent,
     FooterComponent,
@@ -81,7 +88,8 @@ const appRoutes: Routes = [
     LoginComponent,
     LoungeReservationComponent,
     ReservationsViewerComponent,
-    GuestListEditorComponent
+    GuestListEditorComponent,
+    UnregisteredEventRoomViewerComponent
   ],
   providers: [
     {

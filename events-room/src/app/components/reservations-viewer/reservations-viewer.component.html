@@ -1,6 +1,14 @@
 <div class="my-reservations">
+
   <div class="container pad-top">
-    <ul class="collection">
+    <div *ngIf="showSpinner">
+      <h6 class="white-text">Cargando...</h6>
+      <div class="progress">
+
+        <div class="indeterminate"></div>
+      </div>
+    </div>
+    <ul class="collection" *ngIf="!showSpinner">
       <li class="collection-item avatar transparent" *ngFor="let reservation of reservations">
         <div class="row white-text">
           <div class="col m8 s12">
