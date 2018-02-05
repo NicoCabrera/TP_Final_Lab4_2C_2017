@@ -1,46 +1,61 @@
-<footer class="page-footer grey">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Nosotros</h5>
-          <p class="grey-text text-lighten-4">Somos una empresa seria que brinda servicios en el área de la organización de eventos y servicios gastronómicos.
-            Contamos con un vasto personal capacitado para brindar la mejor atención en cada uno de los servicios ofrecidos.
-            Si te interesa conocer mejor nuestro trabajo, te invitamos a que te suscribas a nuestras redes sociales.</p>
-        </div>
-        <div class="col l3 s12">
+<div class="fixed-action-btn go-back">
+    <a class="btn-floating btn-large deep-purple darken-4" id="help" style="visibility: hidden">
+      <i class="large material-icons">help_outline</i>
+    </a>
+  </div>
+<footer class="page-footer grey">  
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Nosotros</h5>
+        <p class="grey-text text-lighten-4">Somos una empresa seria que brinda servicios en el área de la organización de eventos y servicios gastronómicos.
+          Contamos con un vasto personal capacitado para brindar la mejor atención en cada uno de los servicios ofrecidos.
+          Si te interesa conocer mejor nuestro trabajo, te invitamos a que te suscribas a nuestras redes sociales.</p>
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Redes sociales</h5>
+        <ul>
+          <li>
+            <a class="white-text" href="https://github.com/NicoCabrera" target="_blank">Facebook</a>
+          </li>
+          <li>
+            <a class="white-text" href="https://github.com/NicoCabrera" target="_blank">Twitter</a>
+          </li>
+          <li>
+            <a class="white-text" href="https://github.com/NicoCabrera" target="_blank">Instagram</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col l3 s12">
           <h5 class="white-text">Ayuda</h5>
           <ul>
             <li>
-              <a class="white-text" href="#!">Cómo puedo reservar?</a>
+              <a class="white-text" href="javascript:void(0);" (click)="showHowToReserve()">Cómo puedo reservar?</a>
             </li>
             <li>
-              <a class="white-text" href="#!">Contacto telefónico</a>
+              <a class="white-text">TEL: 5555-99991</a>
             </li>
             <li>
-              <a class="white-text" href="#!">Dónde éstan ubicados los salones?</a>
+              <a class="white-text" href="javascript:void(0);" (click)="showHowToCancel()">Como anular una reserva</a>
             </li>
           </ul>
         </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Redes sociales</h5>
-          <ul>
-            <li>
-              <a class="white-text" href="#!">Facebook</a>
-            </li>
-            <li>
-              <a class="white-text" href="#!">Twitter</a>
-            </li>
-            <li>
-              <a class="white-text" href="#!">Instagram</a>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
-    <div class="footer-copyright black">
-      <div class="container">
-        Hecho por
-        <a class="brown-text text-lighten-3" href="https://github.com/NicoCabrera" target="_blank">NicoCabrera</a>
-      </div>
+  </div>
+  <div class="footer-copyright black">
+    
+    <div class="container">
+      Hecho por
+      <a class="brown-text text-lighten-3" href="https://github.com/NicoCabrera" target="_blank">NicoCabrera</a>
     </div>
-  </footer>
+  </div>
+
+  <!-- Tap Target Structure -->
+  <div class="tap-target black" data-activates="help">
+    <div class="tap-target-content">
+      <h5>{{helpTitle}}</h5>
+      <p>{{helpText}}</p>
+    </div>
+  </div>
+
+</footer>

@@ -21,7 +21,9 @@ export class RegisteredUserComponent implements OnInit {
   }
 
   initSideNav(){
-    $(".button-collapse").sideNav();
+    $(".button-collapse").sideNav({
+      closeOnClick: true
+    });
   }
 
   setInitialValues(){

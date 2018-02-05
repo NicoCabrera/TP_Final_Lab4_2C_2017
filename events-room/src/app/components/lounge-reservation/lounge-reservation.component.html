@@ -1,77 +1,78 @@
-<div class="container">
-
-  <div class="row">
-    <div class="col m2"></div>
-    <div class="col s12 m8">
-      <form class="col s12" novalidate>
+<div class="white-container">
+    <div class="container">
         <div class="row">
-          <div class="col s12 input-field">
-            <h6>Elige el salón</h6>
-            <select [(ngModel)]="reservationData.locationId" name="locationId" (change)="selectOnChange($event)">
-              <option value="151531">CABA</option>
-              <option value="265840">Zona Sur</option>
-              <option value="650540">Zona Norte</option>
-            </select>
-          </div>
-          <div class="col s12 input-field">
-            <h6 style="margin-bottom:18px">Elige una fecha disponible</h6>
-            <my-date-picker *ngIf="currentZoneSelected == 'Zona Norte'"  name="mydateNORTE" [options]="myDatePickerOptionsNORTE" [(ngModel)]="reservedDate"></my-date-picker>
-            <my-date-picker *ngIf="currentZoneSelected == 'Zona Sur'" name="mydateSUR" [options]="myDatePickerOptionsSUR" [(ngModel)]="reservedDate"></my-date-picker>
-            <my-date-picker *ngIf="currentZoneSelected == 'CABA'" name="mydateCABA" [options]="myDatePickerOptions" [(ngModel)]="reservedDate" id="mydate"></my-date-picker>
-          </div>
-        </div>
-      </form>
-      <div class="row">
-        <div class="col s12">
-          <p>
-            <input type="checkbox" id="test5" [(ngModel)]="showGuestList" />
-            <label for="test5">¿Desea crear una lista de invitados?</label>
-          </p>
-        </div>
-      </div>
-
-      <div class="row" *ngIf="showGuestList">
-
-        <div class="col s12">
-          <p>Ingrese el nombre y apellido del invitado, luego haga click en 'Aceptar' para agregarlo a su lista.</p>
-        </div>
-        <div class="input-field col s12 m6">
-          <input id="first_name" type="text" class="validate" [(ngModel)]="guestName">
-          <label for="first_name">Nombre</label>
-        </div>
-        <div class="input-field col s12 m6">
-          <input id="last_name" type="text" class="validate" [(ngModel)]="guestLastname">
-          <label for="last_name">Apellido</label>
-        </div>
-        <div class="col s12">
-          <div class="right">
-            <a class="btn waves-effect waves-light btn-large" (click)="addGuest()">Aceptar</a>
-          </div>
-        </div>
-        
-        <div class="col s12">
-          <ul class="collection with-header">
-              <li class="collection-header"><h6 class="center-align">Lista de invitados</h6></li>
-              
-            <li class="collection-item" *ngFor="let guest of reservationData.guestList;let i = index">
-                <div>{{guest.name}}  {{guest.lastname}}
-                  <a href="javascript:void(0);" class="secondary-content red-text">
-                    <i class="material-icons" (click)="deleteGuest(i)">clear</i>
-                  </a>
+          <div class="col m2"></div>
+          <div class="col s12 m8">
+            <form class="col s12" novalidate>
+              <div class="row">
+                <div class="col s12 input-field">
+                  <h6>Elige el salón</h6>
+                  <select [(ngModel)]="reservationData.locationId" name="locationId" (change)="selectOnChange($event)">
+                    <option value="151531">CABA</option>
+                    <option value="265840">Zona Sur</option>
+                    <option value="650540">Zona Norte</option>
+                  </select>
                 </div>
-            </li>
-            <li class="collection-item">Total de invitados: {{totalGuests}}</li>
-          </ul>
+                <div class="col s12 input-field">
+                  <h6 style="margin-bottom:18px">Elige una fecha disponible</h6>
+                  <my-date-picker *ngIf="currentZoneSelected == 'Zona Norte'"  name="mydateNORTE" [options]="myDatePickerOptionsNORTE" [(ngModel)]="reservedDate"></my-date-picker>
+                  <my-date-picker *ngIf="currentZoneSelected == 'Zona Sur'" name="mydateSUR" [options]="myDatePickerOptionsSUR" [(ngModel)]="reservedDate"></my-date-picker>
+                  <my-date-picker *ngIf="currentZoneSelected == 'CABA'" name="mydateCABA" [options]="myDatePickerOptions" [(ngModel)]="reservedDate" id="mydate"></my-date-picker>
+                </div>
+              </div>
+            </form>
+            <div class="row">
+              <div class="col s12">
+                <p>
+                  <input type="checkbox" id="test5" [(ngModel)]="showGuestList" />
+                  <label for="test5">¿Desea crear una lista de invitados?</label>
+                </p>
+              </div>
+            </div>
+      
+            <div class="row" *ngIf="showGuestList">
+      
+              <div class="col s12">
+                <p>Ingrese el nombre y apellido del invitado, luego haga click en 'Aceptar' para agregarlo a su lista.</p>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="first_name" type="text" class="validate" [(ngModel)]="guestName">
+                <label for="first_name">Nombre</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="last_name" type="text" class="validate" [(ngModel)]="guestLastname">
+                <label for="last_name">Apellido</label>
+              </div>
+              <div class="col s12">
+                <div class="right">
+                  <a class="btn waves-effect waves-light btn-large" (click)="addGuest()">Aceptar</a>
+                </div>
+              </div>
+              
+              <div class="col s12">
+                <ul class="collection with-header">
+                    <li class="collection-header"><h6 class="center-align">Lista de invitados</h6></li>
+                    
+                  <li class="collection-item" *ngFor="let guest of reservationData.guestList;let i = index">
+                      <div>{{guest.name}}  {{guest.lastname}}
+                        <a href="javascript:void(0);" class="secondary-content red-text">
+                          <i class="material-icons" (click)="deleteGuest(i)">clear</i>
+                        </a>
+                      </div>
+                  </li>
+                  <li class="collection-item">Total de invitados: {{totalGuests}}</li>
+                </ul>
+              </div>
+            </div>
+            <button class="btn waves-effect waves-red send-btn-margin hoverable light-blue darken-1" (click)="submitOnClick()">Enviar solicitud de reserva</button>
+            <!-- Spinner -->
+            <div class="progress" *ngIf="showSpinner">
+              <div class="indeterminate"></div>
+            </div>
+          </div>
         </div>
+        <div class="col m2"></div>
       </div>
-      <button class="btn waves-effect waves-red send-btn-margin hoverable light-blue darken-1" (click)="submitOnClick()">Enviar solicitud de reserva</button>
-      <!-- Spinner -->
-      <div class="progress" *ngIf="showSpinner">
-        <div class="indeterminate"></div>
-      </div>
-    </div>
-  </div>
-  <div class="col m2"></div>
 </div>
 <!-- Modal for error messages -->
 <div id="modalErrorMsgr" class="modal">

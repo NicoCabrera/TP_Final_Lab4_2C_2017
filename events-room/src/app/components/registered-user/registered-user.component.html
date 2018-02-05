@@ -2,14 +2,14 @@
   <li>
     <div class="user-view">
       <div class="background">
-        <img src="assets/img/bg1-menu-aside.jpg">
+        <img src="assets/img/bg1-menu-aside2.jpg">
       </div>
-        <a><img class="circle" src="assets/img/men-user-avatar.jpg"></a>
+        <a><span class="white-text big text-noodle ">DATOS DEL USUARIO</span></a>
         <a><span class="white-text name">{{user.username}}</span></a>
         <a><span class="white-text email">{{user.email}}</span></a>
     </div>
   </li>
-    <li><a><i class="material-icons">cloud</i>MENU</a></li>
+    <li><a><i class="material-icons">cloud</i><span class="text-noodle big">MENU</span></a></li>
     <li *ngFor="let permission of permissions"><a routerLink="/registered-user/{{permission.uri}}" routerLinkActive="active">{{permission.description}}</a></li>
     <li><a (click)="logout()">Cerrar sesión</a></li>
   </ul>
