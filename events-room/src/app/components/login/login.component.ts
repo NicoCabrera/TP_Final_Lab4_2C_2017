@@ -55,6 +55,12 @@ export class LoginComponent implements OnInit {
     $("label").addClass("active");
   }
 
+  setTestValueForAttendant() {
+    this.form.get("email").setValue("encargado@encargado.com");
+    this.form.get("password").setValue("contraseñasuperloca123456");
+    $("label").addClass("active");
+  }
+
   submitOnClick() {
     this.clearModalMessages();
     this.showSpinner = true;
@@ -71,7 +77,19 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('username', data.username);
           localStorage.setItem('email', data.email);
           localStorage.setItem('permissions', JSON.stringify(data.permissions));
-          this.router.navigateByUrl("/registered-user/eventRoomViewer");
+          switch (data.rolid) {
+            case 535751:
+              this.router.navigateByUrl("/registered-user/eventRoomViewer");
+              break;
+            case 96312471:
+              console.log(data.locationid[0]);
+              localStorage.setItem('locationid',data.locationid[0]);
+              this.router.navigateByUrl("/registered-user/attendant");
+              break;
+            default:
+              break;
+          }
+
         }
         this.showSpinner = false;
         $('.btn').removeClass('disabled');

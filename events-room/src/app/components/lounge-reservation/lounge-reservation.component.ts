@@ -45,7 +45,6 @@ export class LoungeReservationComponent implements OnInit {
 
   clearReservedDate(){
     this.reservedDate = { formatted: "" };
-    console.log("Evento fue atrapado");
   }
 
   ngOnInit() {
@@ -141,7 +140,6 @@ export class LoungeReservationComponent implements OnInit {
   }
 
   submitOnClick() {
-    console.log(this.currentZoneSelected[0]);
     let data = new ReservationData();
     data.locationId = $('select')[0].value;
     if (this.reservedDate.formatted != "") {
@@ -151,8 +149,7 @@ export class LoungeReservationComponent implements OnInit {
       data.guestList = this.reservationData.guestList;
     }
     if (this.validateData(data)) {
-      console.log(this.reservedDate);
-      //this.saveReservation(data);
+      this.saveReservation(data);
     }
   }
 

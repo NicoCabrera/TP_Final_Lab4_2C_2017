@@ -1,0 +1,32 @@
+<div class="white-container">
+  <div class="container">
+      <div class="row">
+        <div class="col m2"></div>
+        <div class="col s12 m8" >
+          <form class="col s12" novalidate>
+            <div class="row">
+              <div class="col s12 input-field">
+                <h6 style="margin-bottom:18px">Elige una fecha disponible</h6>
+                <my-date-picker name="mydateCABA" [options]="myDatePickerOptions" [(ngModel)]="reservedDate" id="mydate"></my-date-picker>
+              </div>
+            </div>
+          </form>
+          <button class="btn waves-effect waves-red send-btn-margin hoverable light-blue darken-1" (click)="submitOnClick()">Guardar cambios</button>
+          <!-- Spinner -->
+          <div class="progress" *ngIf="showSpinner">
+            <div class="indeterminate"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col m2"></div>
+    </div>
+</div>
+<!-- Modal for error messages -->
+<div id="modalErrorMsgr" class="modal">
+  <div class="modal-content green darken-4">
+    <h4 class="center-align white-text">La fecha se ha modificado exitosamente</h4>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" (click)="goToChangeReservationDate()">Continuar</a>
+  </div>
+</div>

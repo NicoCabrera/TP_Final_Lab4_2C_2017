@@ -30,8 +30,9 @@
             <label for="icon_telephone" data-error="El contraseña inválida">Contraseña</label>
           </div>
         </div>
-        <button class="btn waves-effect waves-red send-btn-margin hoverable light-blue darken-1" (click)="submitOnClick()" [disabled]="form.invalid">Enviar</button>
-        <button class="btn waves-effect waves-red btn-test hoverable light-blue darken-1" (click)="setTestValue()">Valores de prueba</button>
+        <button class="btn waves-effect waves-red send-btn-margin hoverable green darken-1" (click)="submitOnClick()" [disabled]="form.invalid">Enviar</button>
+        <button class="btn waves-effect waves-red btn-test hoverable light-blue darken-1" (click)="setTestValue()">Cliente</button>
+        <button class="btn waves-effect waves-red btn-test hoverable light-blue darken-1" (click)="setTestValueForAttendant()">Encargado</button>
       </form>
       <!-- Spinner -->
       <div class="progress" *ngIf="showSpinner">

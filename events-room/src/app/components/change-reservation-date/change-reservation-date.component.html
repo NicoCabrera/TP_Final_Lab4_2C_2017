@@ -1,0 +1,25 @@
+<div class="my-reservations">
+  <div class="container pad-top">
+    <div *ngIf="showSpinner">
+      <h6 class="white-text">Cargando...</h6>
+      <div class="progress">
+        <div class="indeterminate"></div>
+      </div>
+    </div>
+    <ul class="collection" *ngIf="!showSpinner">
+      <li href="#!" class="collection-item avatar transparent" *ngFor="let reservation of reservations">
+        <div class="row white-text">
+          <div class="col m8 s12">
+            <i class="material-icons circle green">event</i>
+            <span class="title">FECHA: {{reservation.date}}</span>
+            <p>LUGAR: {{reservation.description}}</p>
+            <p>USUARIO: {{reservation.username}}</p>
+          </div>
+          <div class="col m4 s12">
+            <a class="waves-effect waves-light btn blue darken-1" (click)="changeDate(reservation)">Cambiar fecha</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

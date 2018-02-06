@@ -19,6 +19,10 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { GuestListEditorComponent } from '../../components/guest-list-editor/guest-list-editor.component';
 import { HomeHeaderComponent } from '../../components/home-header/home-header.component';
 import { UnregisteredEventRoomViewerComponent } from '../../components/unregistered-event-room-viewer/unregistered-event-room-viewer.component';
+import { AttendantComponent } from '../../components/attendant/attendant.component';
+import { CancelationComponent } from '../../components/cancelation/cancelation.component';
+import { ChangeReservationDateComponent } from '../../components/change-reservation-date/change-reservation-date.component';
+import { ChangeDateComponent } from '../../components/change-date/change-date.component';
 //DatePicker
 const appRoutes: Routes = [
   {
@@ -55,9 +59,25 @@ const appRoutes: Routes = [
         component: ReservationsViewerComponent
       },
       {
-        path: "guestListEditorComponent",
+        path: "guestListEditor",
         component: GuestListEditorComponent
       },
+      {
+        path: "attendant",
+        component: AttendantComponent
+      },
+      {
+        path: "cancelation",
+        component: CancelationComponent
+      },
+      {
+        path: "change-reservation-date",
+        component: ChangeReservationDateComponent
+      },
+      {
+        path: "change-date",
+        component: ChangeDateComponent
+      }
     ]
   },
   {
@@ -89,7 +109,11 @@ const appRoutes: Routes = [
     LoungeReservationComponent,
     ReservationsViewerComponent,
     GuestListEditorComponent,
-    UnregisteredEventRoomViewerComponent
+    UnregisteredEventRoomViewerComponent,
+    AttendantComponent,
+    CancelationComponent,
+    ChangeReservationDateComponent,
+    ChangeDateComponent
   ],
   providers: [
     {

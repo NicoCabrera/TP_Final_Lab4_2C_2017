@@ -3,6 +3,12 @@
     height: 650px;
 }
 
+@media only screen and (max-width : 600px) {
+    .black-container {
+    height: 1250px;
+    }
+  }
+
 .big{
     font-size: 20px;
 }
