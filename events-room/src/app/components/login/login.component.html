@@ -33,6 +33,8 @@
         <button class="btn waves-effect waves-red send-btn-margin hoverable green darken-1" (click)="submitOnClick()" [disabled]="form.invalid">Enviar</button>
         <button class="btn waves-effect waves-red btn-test hoverable light-blue darken-1" (click)="setTestValue()">Cliente</button>
         <button class="btn waves-effect waves-red btn-test hoverable light-blue darken-1" (click)="setTestValueForAttendant()">Encargado</button>
+        <button class="btn waves-effect waves-red btn-test hoverable light-blue darken-1" (click)="setTestValueForEmployee()">Empleado</button>
+        <button class="btn waves-effect waves-red btn-test hoverable light-blue darken-1" (click)="setTestValueForAdmin()">Administrador</button>
       </form>
       <!-- Spinner -->
       <div class="progress" *ngIf="showSpinner">

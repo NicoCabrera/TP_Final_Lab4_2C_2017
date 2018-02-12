@@ -9,7 +9,7 @@ import { User } from '../../classes/user';
 import { useAnimation } from '@angular/core/src/animation/dsl';
 import { DataResponse } from '../../classes/dataResponse';
 import { gs } from '../../../environments/environment';
-
+declare var Materialize;
 declare var $;
 @Component({
   selector: 'app-register',
@@ -23,13 +23,13 @@ export class RegisterComponent implements OnInit {
   showSpinner: boolean;
   errorMessages: Array<string>;
   headerMsj: string;
-  isValid:boolean;
+  isValid: boolean;
   constructor(private fb: FormBuilder, private router: Router, private webService: WebService) {
     this.user = new Customer();
     this.showSpinner = false;
     this.errorMessages = new Array<string>();
     this.headerMsj = "";
-    this.isValid = true;
+    this.isValid = false;
   }
 
   ngOnInit() {
@@ -43,24 +43,31 @@ export class RegisterComponent implements OnInit {
   }
 
   submitOnClick() {
-    this.clearModalMessages();
-    this.showSpinner = true;
-    $('.btn').addClass('disabled');
-    this.webService.post(this.user, "http://localhost/apiFinal/apirest/login/signup")
-      .then((data) => {
-        if (data.invalid.length > 0 || (data.jwt == undefined)) {
-          this.headerMsj = data.message;
-          this.errorMessages = data.invalid;
-          this.showErrorMessages();
-        } else {
-          this.headerMsj = data.message;
-          localStorage.setItem('token', data.jwt);
-          this.router.navigateByUrl("/registered-user/eventRoomViewer");
-        }
-        this.showSpinner = false;
-        $('.btn').removeClass('disabled');
-      });
+    if (this.isValid == true) {
+      this.clearModalMessages();
+      this.showSpinner = true;
+      $('.btn').addClass('disabled');
+      this.webService.post(this.user, "http://localhost/apiFinal/apirest/login/signup")
+        .then((data) => {
+          if (data.invalid.length > 0 || (data.jwt == undefined)) {
+            this.headerMsj = data.message;
+            this.errorMessages = data.invalid;
+            this.showErrorMessages();
+          } else {
+            this.headerMsj = data.message;
+            localStorage.setItem('token', data.jwt);
+            localStorage.setItem('username', data.username);
+            localStorage.setItem('email', data.email);
+            localStorage.setItem('permissions', JSON.stringify(data.permissions));
 
+            this.router.navigateByUrl("/registered-user/eventRoomViewer");
+          }
+          this.showSpinner = false;
+          $('.btn').removeClass('disabled');
+        });
+    }else{
+      Materialize.toast("Debe resolver el captcha", 4000);
+    }
   }
 
   showErrorMessages() {

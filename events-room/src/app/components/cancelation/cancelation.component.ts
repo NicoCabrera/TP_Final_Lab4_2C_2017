@@ -12,6 +12,7 @@ export class CancelationComponent implements OnInit {
 
   reservations: Array<any>;
   showSpinner: boolean;
+  selectedReservation:any;
   constructor(private router: Router, private webService: WebService) {
     this.reservations = new Array<any>();
     this.showSpinner = true;
@@ -27,11 +28,13 @@ export class CancelationComponent implements OnInit {
       });
   }
 
-  cancel(reservation) {
+  cancel() {
+
+    let reservation = this.selectedReservation;
     this.showSpinner = true;
     this.webService.post({ reservationid: reservation.reservationid, locationid: localStorage.getItem("locationid")}, "http://localhost/apiFinal/apirest/reservation/cancel").then(
       (data) => {
-        $('.modal').modal('open');
+        $('#modalErrorMsgr').modal('open');
         this.reservations = data.reservations;
         this.showSpinner = false;
       });
@@ -39,7 +42,19 @@ export class CancelationComponent implements OnInit {
 
   initModal() {
     $(document).ready(function () {
-      $('.modal').modal({dismissible: true});
+      $('#modalErrorMsgr').modal({dismissible: true});
     });
+    $(document).ready(function () {
+      $('#confirm').modal();
+    });
+  }
+
+  setReservationToCancel(reservation){
+    this.selectedReservation = reservation;
+    $('#confirm').modal('open');
+  }
+
+  closeModal(){
+    $('#confirm').modal('close');
   }
 }

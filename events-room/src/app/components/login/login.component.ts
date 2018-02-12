@@ -61,6 +61,18 @@ export class LoginComponent implements OnInit {
     $("label").addClass("active");
   }
 
+  setTestValueForEmployee() {
+    this.form.get("email").setValue("empleado@empleado.com");
+    this.form.get("password").setValue("contraseñasuperloca123456");
+    $("label").addClass("active");
+  }
+
+  setTestValueForAdmin() {
+    this.form.get("email").setValue("administrador@administrador.com");
+    this.form.get("password").setValue("contraseñasuperloca123456");
+    $("label").addClass("active");
+  }
+
   submitOnClick() {
     this.clearModalMessages();
     this.showSpinner = true;
@@ -71,6 +83,8 @@ export class LoginComponent implements OnInit {
           this.headerMsj = data.message;
           this.errorMessages = data.invalid;
           this.showErrorMessages();
+          this.showSpinner = false;
+          $('.btn').removeClass('disabled');
         } else {
           this.headerMsj = data.message;
           localStorage.setItem('token', data.jwt);
@@ -80,19 +94,37 @@ export class LoginComponent implements OnInit {
           switch (data.rolid) {
             case 535751:
               this.router.navigateByUrl("/registered-user/eventRoomViewer");
+              this.showSpinner = false;
+              $('.btn').removeClass('disabled');
               break;
             case 96312471:
-              console.log(data.locationid[0]);
-              localStorage.setItem('locationid',data.locationid[0]);
+              localStorage.setItem('locationid', data.locationid[0]);
               this.router.navigateByUrl("/registered-user/attendant");
+              this.showSpinner = false;
+              $('.btn').removeClass('disabled');
+              break;
+            case 221548621:
+              localStorage.setItem('locationid', data.locationid[0]);
+              this.router.navigateByUrl("/registered-user/guest-list-viewer");
+              this.showSpinner = false;
+              $('.btn').removeClass('disabled');
+              break;
+            case 88107751:
+              this.webService.post({ jwk: localStorage.getItem("token") }, "http://localhost/apiFinal/apirest/reservation/byactivestatus").then((data) => {
+                localStorage.setItem("accepted", JSON.stringify(data.accepted));
+                localStorage.setItem("canceled", JSON.stringify(data.canceled));
+                localStorage.setItem("barChartLabels", JSON.stringify(data.barChartLabels));
+                this.router.navigateByUrl("/registered-user/admin-users");
+                this.showSpinner = false;
+                $('.btn').removeClass('disabled');
+              })
               break;
             default:
               break;
           }
 
         }
-        this.showSpinner = false;
-        $('.btn').removeClass('disabled');
+
       });
   }
 

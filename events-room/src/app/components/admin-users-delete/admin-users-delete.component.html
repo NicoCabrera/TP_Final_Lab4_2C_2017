@@ -1,0 +1,133 @@
+<div class="container">
+  <div class="row">
+    <div class="col m2"></div>
+    <div class="col s12 m8 grey lighten-3">
+      <h5 class="center-align text-noodle big">Filtrar usuarios por:</h5>
+    </div>
+    <div class="col m2"></div>
+  </div>
+  <div class="row">
+    <div class="col m2"></div>
+    <div class="col s12 m8">
+      <!-- Select -->
+      <h4 class="text-noodle">Nombre de usuario</h4>
+      <div class="row">
+        <div class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="text" id="autocomplete-input-1" class="autocomplete" [(ngModel)]="username">
+              <label for="autocomplete-input-1">Nombre de usuario</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h4 class="text-noodle">Correo electrónico</h4>
+      <div class="row">
+        <div class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="text" id="autocomplete-input-2" class="autocomplete" [(ngModel)]="email">
+              <label for="autocomplete-input-2">email</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Select -->
+      <h4 class="text-noodle">Tipo de usuario</h4>
+      <div class="col s12">
+        <select [(ngModel)]="selOpt1.value" name="selOpt1" id="selOpt1">
+          <option [value]="o.value" *ngFor="let o of opt1"> {{o.name}} </option>
+        </select>
+        <label>Materialize Select</label>
+      </div>
+      <!-- Select -->
+      <div class="selectContainer">
+        <h4 class="text-noodle">Sucursal</h4>
+        <div class="col s12">
+          <select [(ngModel)]="selOpt2.value" name="selOpt2" id="selOpt2">
+            <option [value]="o.value" *ngFor="let o of opt2"> {{o.name}} </option>
+          </select>
+          <label>Materialize Select</label>
+        </div>
+      </div>
+      <div class="col m4 s12">
+        <a class="btn-search waves-effect waves-light btn green darken-1 " (click)="searchOnClick()">Buscar</a>
+      </div>
+      <!-- Spinner -->
+      <div class="progress" *ngIf="showSpinner">
+        <div class="indeterminate"></div>
+      </div>
+      <div class="col s12">
+        <ul *ngIf="!showSpinner" class="collection with-header">
+          <li class="collection-header grey darken-3">
+            <h6 class="center-align white-text text-noodle big">Resultado de la búsqueda</h6>
+          </li>
+          <li class="collection-item avatar" *ngFor="let user of results;let i = index">
+            <div class="row">
+              <div class="col s12">
+                <span class="title">
+                  <span class="text-noodle">Nombre: </span> {{user.username}}</span>
+              </div>
+              <div class="col s12">
+                <span class="title">
+                  <span class="text-noodle">Correo: </span> {{user.email}}</span>
+              </div>
+              <div class="col s12">
+                <span class="title">
+                  <span class="text-noodle">Tipo usuario:</span> {{user.rolid | rol}}</span>
+              </div>
+              <div class="col s12">
+                <p>
+                  <span class="text-noodle">Lugar: </span> {{user.locationid | location}}</p>
+                <a href="javascript:void(0);" class="secondary-content red-text">
+                  <i class="material-icons" (click)="setUserToDelete(user)">clear</i>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="collection-item">Total: {{results.length}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col m2"></div>
+
+</div>
+<!-- Modal for error messages -->
+<div id="delete-user-admin-modal" class="modal">
+  <div class="modal-content red darken-4">
+    <h4 class="center-align white-text">{{headerMsj}}</h4>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Continuar</a>
+  </div>
+</div>
+<!-- Modal for error messages -->
+<div id="confirmDeleteAdminModal" class="modal">
+  <div class="modal-content deep-orange darken-2">
+    <h4 class="center-align white-text text-noodle">¿Está seguro de eliminar éste usuario?</h4>
+  </div>
+  <div class="modal-content">
+    <div class="col s12">
+      <span class="title">
+        <span class="text-noodle flow-text">Nombre: </span> {{selectedUser.username}}</span>
+    </div>
+    <div class="col s12">
+      <span class="title">
+        <span class="text-noodle flow-text">Correo: </span> {{selectedUser.email}}</span>
+    </div>
+    <div class="col s12">
+      <span class="title">
+        <span class="text-noodle flow-text">Tipo usuario:</span> {{selectedUser.rolid | rol}}</span>
+    </div>
+    <div class="col s12">
+      <span class="title">
+        <span class="text-noodle flow-text">Lugar:</span> {{selectedUser.locationid | location}}</span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a (click)="deleteSelectedUser()" class="modal-action modal-close waves-effect waves-green btn-flat">Si</a>
+    <a (click)="closeModal()" class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
+  </div>
+</div>

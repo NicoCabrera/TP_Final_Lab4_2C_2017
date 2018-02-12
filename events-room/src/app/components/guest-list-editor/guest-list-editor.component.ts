@@ -19,8 +19,8 @@ export class GuestListEditorComponent implements OnInit {
   tableNumberIndex: number;
   guestName: string;
   guestLastname: string;
-  showSpinner:boolean;
-  reservationid:number;
+  showSpinner: boolean;
+  reservationid: number;
 
   constructor(private router: Router, private route: ActivatedRoute, private webService: WebService) {
     this.showSpinner = false;
@@ -61,12 +61,35 @@ export class GuestListEditorComponent implements OnInit {
       if ("Sin asignar" != $('select')[0].value) {
         guest = { name: this.guestName, lastname: this.guestLastname, tnumber: $('select')[0].value };
       } else {
-        guest = { name: this.guestName, lastname: this.guestLastname };
+        guest = { name: this.guestName, lastname: this.guestLastname, tnumber: "" };
       }
-      this.guestlist.push(guest);
+      if(this.checkNumberOfPeoplePerTable(guest)){
+        this.guestlist.push(guest);
       this.clearGuestData();
       this.totalGuests = this.guestlist.length;
+      }else{
+        Materialize.toast("Solo se permite 10 personas por mesa", 4000);
+      }
+      
     }
+  }
+
+
+  checkNumberOfPeoplePerTable(gst): boolean {
+    let count = 0;
+    let rv = true;
+
+    if (gst.tnumber != "") {
+      this.guestlist.forEach(guest => {
+        if (guest.tnumber == gst.tnumber) {
+          count++;
+        }
+      });
+      if (count >= 10) {
+        rv = false;
+      }
+    }
+    return rv;
   }
 
   validateGuest() {
@@ -90,7 +113,7 @@ export class GuestListEditorComponent implements OnInit {
 
   }
 
-  saveReservation(){
+  saveReservation() {
     this.showSpinner = true;
     $('.btn').addClass('disabled');
     let reservationDetail = {
@@ -98,12 +121,12 @@ export class GuestListEditorComponent implements OnInit {
       guestList: JSON.stringify(this.guestlist),
       jwt: localStorage.getItem("token")
     };
-   
-    this.webService.post(reservationDetail,"http://localhost/apiFinal/apirest/reservation/updatelist").then(
-      data =>{
-         this.showSpinner = false;
-         $('.modal').modal('open');
-         $('.btn').removeClass('disabled');
+
+    this.webService.post(reservationDetail, "http://localhost/apiFinal/apirest/reservation/updatelist").then(
+      data => {
+        this.showSpinner = false;
+        $('.modal').modal('open');
+        $('.btn').removeClass('disabled');
       });
   }
 
@@ -113,5 +136,5 @@ export class GuestListEditorComponent implements OnInit {
       $('.modal').modal();
     });
   }
-  
+
 }

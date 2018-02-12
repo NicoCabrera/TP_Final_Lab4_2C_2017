@@ -3,6 +3,7 @@
     <div *ngIf="showSpinner">
       <h6 class="white-text">Cargando...</h6>
       <div class="progress">
+
         <div class="indeterminate"></div>
       </div>
     </div>
@@ -16,26 +17,10 @@
             <p>USUARIO: {{reservation.username}}</p>
           </div>
           <div class="col m4 s12">
-            <a class="waves-effect waves-light btn red darken-1" (click)="setReservationToCancel(reservation)">Cancelar</a>
+            <a class="waves-effect waves-light btn green darken-1" (click)="guestListEditor(reservation)">Lista de invitados</a>
           </div>
         </div>
       </li>
     </ul>
-  </div>
-</div>
-<!-- Modal for error messages -->
-<div id="modalErrorMsgr" class="modal">
-  <div class="modal-content green darken-4">
-    <h4 class="center-align white-text">La reserva se ha cancelado</h4>
-  </div>
-</div>
-<!-- Modal for error messages -->
-<div id="confirm" class="modal">
-  <div class="modal-content green darken-4">
-    <h4 class="center-align white-text">¿Confirma la cancelación de la reserva?</h4>
-  </div>
-  <div class="modal-footer">
-    <a (click)="cancel()" class="modal-action modal-close waves-effect waves-green btn-flat">Si</a>
-    <a  (click)="closeModal()" class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
   </div>
 </div>

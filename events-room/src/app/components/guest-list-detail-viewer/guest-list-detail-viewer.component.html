@@ -1,0 +1,21 @@
+<div class="container">
+  <ul class="collection with-header">
+    <li class="collection-header grey darken-3">
+      <h6 class="center-align white-text text-noodle big">LISTA DE INVITADOS</h6>
+    </li>
+
+    <li class="collection-item grey lighten-3" *ngFor="let guest of guestlist;let i = index">
+      <div>
+        <div class="row">
+          <div class="col s12 m6">
+            {{guest.lastname}}, {{guest.name}} 
+          </div>
+          <div class="col s12 m6">
+            MESA Nº: {{guest.tnumber}}
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="collection-item">Total de invitados: {{totalGuests}}</li>
+  </ul>
+</div>

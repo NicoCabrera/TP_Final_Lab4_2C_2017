@@ -9,6 +9,12 @@ import { FooterComponent } from '../../components/footer/footer.component';
 //Captcha
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
+//Charts
+import { ChartsModule } from 'ng2-charts';
+//Pipes
+import { LocationPipe } from '../../pipes/location.pipe';
+import { RolPipe } from '../../pipes/rol.pipe';
+
 import { RegisteredUserComponent } from '../../components/registered-user/registered-user.component';
 import { LoginComponent } from '../../components/login/login.component';
 import { VerifyJwtService } from '../../services/verify-jwt.service';
@@ -23,6 +29,15 @@ import { AttendantComponent } from '../../components/attendant/attendant.compone
 import { CancelationComponent } from '../../components/cancelation/cancelation.component';
 import { ChangeReservationDateComponent } from '../../components/change-reservation-date/change-reservation-date.component';
 import { ChangeDateComponent } from '../../components/change-date/change-date.component';
+import { GuestListViewerComponent } from '../../components/guest-list-viewer/guest-list-viewer.component';
+import { GuestListDetailViewerComponent } from '../../components/guest-list-detail-viewer/guest-list-detail-viewer.component';
+import { QuizComponent } from '../../components/quiz/quiz.component';
+import { ChartsComponent } from '../../components/charts/charts.component';
+import { AdminUsersComponent } from '../../components/admin-users/admin-users.component';
+import { AdminUsersRegisterComponent } from '../../components/admin-users-register/admin-users-register.component';
+import { AdminUsersDeleteComponent } from '../../components/admin-users-delete/admin-users-delete.component';
+import { AdminUsersUpdateComponent } from '../../components/admin-users-update/admin-users-update.component';
+
 //DatePicker
 const appRoutes: Routes = [
   {
@@ -77,6 +92,26 @@ const appRoutes: Routes = [
       {
         path: "change-date",
         component: ChangeDateComponent
+      },
+      {
+        path: "guest-list-viewer",
+        component: GuestListViewerComponent
+      },
+      {
+        path: "guest-list-detail-viewer",
+        component: GuestListDetailViewerComponent
+      },
+      {
+        path: "admin-users",
+        component: AdminUsersComponent
+      },
+      {
+        path: "charts",
+        component: ChartsComponent
+      },
+      {
+        path: "quiz",
+        component: QuizComponent
       }
     ]
   },
@@ -96,7 +131,9 @@ const appRoutes: Routes = [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAvdm1fYge8bF93jTOmaPYaSUdVbnVZam0'
     }),
-    MyDatePickerModule
+    MyDatePickerModule,
+    ChartsModule
+    
   ],
   declarations: [
     HomeComponent,
@@ -113,7 +150,17 @@ const appRoutes: Routes = [
     AttendantComponent,
     CancelationComponent,
     ChangeReservationDateComponent,
-    ChangeDateComponent
+    ChangeDateComponent,
+    GuestListViewerComponent,
+    GuestListDetailViewerComponent,
+    QuizComponent,
+    ChartsComponent,
+    AdminUsersComponent,
+    AdminUsersRegisterComponent,
+    AdminUsersDeleteComponent,
+    LocationPipe,
+    RolPipe,
+    AdminUsersUpdateComponent
   ],
   providers: [
     {

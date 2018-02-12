@@ -1,3 +1,10 @@
 .big{
     font-size: 30px;
 }
+
+.active{
+    background-color: #4a148c;
+}
+.activei{
+    background-color: #e0e0e0;
+}

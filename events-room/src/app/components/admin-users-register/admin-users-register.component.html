@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="col m2"></div>
+    <div class="col s12 m8 grey lighten-3">
+      <h5 class="center-align text-noodle big">Datos del nuevo usuario</h5>
+    </div>
+    <div class="col m2"></div>
+  </div>
+  <div class="row">
+    <div class="col m2"></div>
+    <div class="col s12 m8">
+      <!-- Select -->
+      <h4 class="text-noodle">Tipo de usuario</h4>
+      <div class="col s12">
+        <select [(ngModel)]="selectedOption1.value" name="selectForQuestion1" id="selectForQuestion1">
+          <option [value]="o.value" *ngFor="let o of opt1"> {{o.name}} </option>
+        </select>
+        <label>Materialize Select</label>
+      </div>
+      <!-- Select -->
+      <div class="selectContainer">
+        <h4 class="text-noodle">Sucursal</h4>
+        <div class="col s12">
+          <select [(ngModel)]="selectedOption2.value" name="selectForQuestion2" id="selectForQuestion2">
+            <option [value]="o.value" *ngFor="let o of opt2"> {{o.name}} </option>
+          </select>
+          <label>Materialize Select</label>
+        </div>
+      </div>
+      <form class="col s12" [formGroup]="form" novalidate>
+        <div class="row">
+          <h4 class="text-noodle">Nombre de usuario</h4>
+          <div class="input-field col s12">
+            <input id="icon_prefix" type="text" formControlName="username" data-length="50" [(ngModel)]="user.username">
+            <label for="icon_prefix" data-error="Usuario no válido">Nombre de usuario</label>
+          </div>
+          <h4 class="text-noodle">Correo electrónico</h4>
+          <div class="input-field col s12">
+            <input id="icon_telephone" type="email" formControlName="email" data-length="50" [(ngModel)]="user.email">
+            <label for="icon_telephone" data-error="El mail no es válido">Correo electrónico</label>
+          </div>
+          <h4 class="text-noodle">Contraseña</h4>
+          <div class="input-field col s12">
+            <input id="icon_password" type="password" formControlName="password" data-length="50" [(ngModel)]="user.password">
+            <label for="icon_telephone" data-error="El contraseña inválida">Contraseña</label>
+          </div>
+        </div>
+        <button class="btn waves-effect waves-red send-btn-margin hoverable light-blue darken-1" (click)="save()" [disabled]="form.invalid">Guardar</button>
+      </form>
+      <!-- Spinner -->
+      <div class="progress" *ngIf="showSpinner">
+        <div class="indeterminate"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col m2"></div>
+</div>
+<!-- Modal for error messages -->
+<div id="modal-admin-register" class="modal">
+  <div class="modal-content red darken-4">
+    <h4 class="center-align white-text">{{headerMsj}}</h4>
+    <p *ngFor="let msj of errorMessages" class="center-align white-text">{{msj}}</p>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Continuar</a>
+  </div>
+</div>

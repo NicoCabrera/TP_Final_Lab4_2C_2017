@@ -10,7 +10,7 @@
     </div>
   </li>
     <li><a><i class="material-icons">cloud</i><span class="text-noodle big">MENU</span></a></li>
-    <li *ngFor="let permission of permissions"><a routerLink="/registered-user/{{permission.uri}}" routerLinkActive="active">{{permission.description}}</a></li>
+    <li *ngFor="let permission of permissions"><a routerLink="/registered-user/{{permission.uri}}" routerLinkActive="activei" [routerLinkActiveOptions]="{exact: true}">{{permission.description}}</a></li>
     <li><a (click)="logout()">Cerrar sesión</a></li>
   </ul>
   
@@ -19,7 +19,7 @@
       <a class="brand-logo text-palace left">PALACE EVENTUAL</a>
       <ul id="nav-mobile" >
         <li class="right hide-on-med-and-down"><a (click)="logout()">Cerrar sesión</a></li><li class="right"><a data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a></li>
-        <li *ngFor="let permission of permissions" class="right hide-on-med-and-down" ><a routerLink="/registered-user/{{permission.uri}}" routerLinkActive="active">{{permission.description}}</a></li>
+        <li *ngFor="let permission of permissions" class="right hide-on-med-and-down" ><a routerLink="/registered-user/{{permission.uri}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >{{permission.description}}</a></li>
       </ul>
     </div>
   </nav>

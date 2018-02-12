@@ -23,7 +23,7 @@ export class FooterComponent implements OnInit {
   }
   showHowToCancel(){
     this.helpTitle = "Para cancelar una reserva";
-    this.helpText = "Debe comunicarse telefónicamente. Las reservas se cancelan con 48hs de anticipacion.";
+    this.helpText = "Debe comunicarse telefónicamente. Las reservas se cancelan con 48hs de anticipacion como mínimo.";
     $('.tap-target').tapTarget('open');
   }
 

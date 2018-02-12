@@ -220,4 +220,8 @@ export class LoungeReservationComponent implements OnInit {
   goToReservationsViewer() {
     this.router.navigateByUrl("/registered-user/reservationsViewer");
   }
+
+  goToQuiz(){
+    this.router.navigateByUrl("/registered-user/quiz");
+  }
 }
