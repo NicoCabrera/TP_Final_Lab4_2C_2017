@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomOption } from '../quiz/quiz.component';
 import { WebService } from '../../services/web.service';
+import { Router } from '@angular/router';
 
 declare var $;
 declare var Materialize;
@@ -21,7 +22,7 @@ export class AdminUsersUpdateComponent implements OnInit {
   selectedUser: any;
   showSpinner: boolean;
   headerMsj: string;
-  constructor(private webService: WebService) {
+  constructor(private webService: WebService,private router: Router) {
     this.username = "";
     this.email = "";
     this.sOpt1 = new CustomOption();
@@ -121,6 +122,6 @@ export class AdminUsersUpdateComponent implements OnInit {
 
 
   showUserDetailToUpdate(user) {
-    console.log(user);
+    this.router.navigate(['/registered-user/update-user', user]);
   }
 }

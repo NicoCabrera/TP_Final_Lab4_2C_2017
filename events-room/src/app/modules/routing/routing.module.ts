@@ -37,6 +37,7 @@ import { AdminUsersComponent } from '../../components/admin-users/admin-users.co
 import { AdminUsersRegisterComponent } from '../../components/admin-users-register/admin-users-register.component';
 import { AdminUsersDeleteComponent } from '../../components/admin-users-delete/admin-users-delete.component';
 import { AdminUsersUpdateComponent } from '../../components/admin-users-update/admin-users-update.component';
+import { AdminUsersUpdateDetailComponent } from '../../components/admin-users-update-detail/admin-users-update-detail.component';
 
 //DatePicker
 const appRoutes: Routes = [
@@ -112,6 +113,10 @@ const appRoutes: Routes = [
       {
         path: "quiz",
         component: QuizComponent
+      },
+      {
+        path: "update-user",
+        component: AdminUsersUpdateDetailComponent
       }
     ]
   },
@@ -160,7 +165,8 @@ const appRoutes: Routes = [
     AdminUsersDeleteComponent,
     LocationPipe,
     RolPipe,
-    AdminUsersUpdateComponent
+    AdminUsersUpdateComponent,
+    AdminUsersUpdateDetailComponent
   ],
   providers: [
     {

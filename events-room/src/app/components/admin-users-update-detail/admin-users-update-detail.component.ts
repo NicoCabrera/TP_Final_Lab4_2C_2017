@@ -1,44 +1,45 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { WebService } from '../../services/web.service';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Customer } from '../../classes/customer';
-import { CustomOption } from '../quiz/quiz.component';
 import { Employee } from '../../classes/employee';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { CustomOption } from '../quiz/quiz.component';
 declare var Materialize;
 declare var $;
-@Component({
-  selector: 'app-admin-users-register',
-  templateUrl: './admin-users-register.component.html',
-  styleUrls: ['./admin-users-register.component.css']
-})
-export class AdminUsersRegisterComponent implements OnInit {
 
+@Component({
+  selector: 'app-admin-users-update-detail',
+  templateUrl: './admin-users-update-detail.component.html',
+  styleUrls: ['./admin-users-update-detail.component.css']
+})
+export class AdminUsersUpdateDetailComponent implements OnInit {
+  user:Employee
   form: FormGroup;
-  user: Employee;
   showSpinner: boolean;
   errorMessages: Array<string>;
   headerMsj: string;
   isValid: boolean;
-  selectedOption1: CustomOption;
-  selectedOption2: CustomOption;
+  userRol: CustomOption;
+  userLocation: CustomOption;
   opt1: Array<CustomOption> = [{ name: "Empleado", value: 221548621 }, { name: "Cliente", value: 535751 }, { name: "Encargado", value: 96312471 }, { name: "Administrador", value: 88107751 }];
   opt2: Array<CustomOption> = [{ name: "CABA", value: 151531 }, { name: "Zona Sur", value: 265840 }, { name: "Zona Norte", value: 650540 }];
   withOutLocation: boolean;
+  userid:number;
 
-  constructor(private fb: FormBuilder, private router: Router, private webService: WebService) {
+  constructor(private fb: FormBuilder, private router: Router, private webService: WebService  ,private route: ActivatedRoute,) {
     this.user = new Employee();
     this.showSpinner = false;
     this.errorMessages = new Array<string>();
     this.headerMsj = "";
     this.isValid = false;
-    this.selectedOption1 = new CustomOption();
-    this.selectedOption1.name = "Empleado";
-    this.selectedOption1.value = 221548621;
-    this.selectedOption2 = new CustomOption();
-    this.selectedOption2.name = "CABA";
-    this.selectedOption2.value = 151531;
+    this.userRol = new CustomOption();
+    this.userRol.name = "Empleado";
+    this.userRol.value = 221548621;
+    this.userLocation = new CustomOption();
+    this.userLocation.name = "CABA";
+    this.userLocation.value = 151531;
     this.withOutLocation = false;
+    this.userid = -1;
   }
 
   ngOnInit() {
@@ -47,6 +48,27 @@ export class AdminUsersRegisterComponent implements OnInit {
       email: new FormControl(this.user.email, [Validators.required, Validators.maxLength(50), Validators.email]),
       password: new FormControl(this.user.password, [Validators.required, Validators.maxLength(50)]),
     });
+
+    this.route.params.subscribe((user) => {
+      this.user.username = user.username;
+      this.user.email = user.email;
+      this.user.password = user.password
+      this.userid = parseInt(user.userid);
+      let locationid = parseInt(user.locationid)
+      if(locationid == 151531 || locationid == 265840 || locationid == 650540){
+        $(".locationContainer").fadeIn("slow", () => { });
+        this.withOutLocation = false;
+        this.userLocation.value = parseInt(user.locationid);
+      }else{
+        $(".locationContainer").fadeOut("slow", () => { });
+        this.withOutLocation = true;
+      }
+      this.userRol.value = parseInt(user.rolid);
+      if(!isNaN(user.employeeid)){
+        this.user.employeeid = parseInt(user.employeeid);
+      }
+    });
+    
     this.initCharacterCount();
     this.initModal();
     this.initSelect();
@@ -70,29 +92,37 @@ export class AdminUsersRegisterComponent implements OnInit {
     var handler = this.selectOnChange;
     $(document).ready(function () {
       $('select').material_select();
-      $("#selectForQuestion1").change({ context: context }, handler);
+      $("#userRol").change({ context: context }, handler);
     });
   }
 
   selectOnChange(event) {
     let context = event.data.context;
-    let selectedOption: string = $("#selectForQuestion1 option:selected").text().toString().trim();
+    let selectedOption: string = $("#userRol option:selected").text().toString().trim();
     if (selectedOption == "Cliente" || selectedOption == "Administrador") {
-      $(".selectContainer").fadeOut("slow", () => { });
+      $(".locationContainer").fadeOut("slow", () => { });
       context.withOutLocation = true;
     } else {
-      $(".selectContainer").fadeIn("slow", () => { });
+      $(".locationContainer").fadeIn("slow", () => { });
       context.withOutLocation = false;
     }
   }
 
-  save() {
+  update() {
     this.clearModalMessages();
-    this.user.locationid = parseInt($('#selectForQuestion2')[0].value);
-    this.user.rolid = parseInt($('#selectForQuestion1')[0].value);
+
+    let updatedUser = {
+      email: this.user.email,
+      employeeid: this.user.employeeid,
+      locationid: parseInt($('#userLocation')[0].value),
+      userid: this.userid,
+      username: this.user.username,
+      password: this.user.password,
+      rolid: parseInt($('#userRol')[0].value),
+    };
     this.showSpinner = true;
     $('.btn').addClass('disabled');
-    this.webService.post(this.user, "http://localhost/apiFinal/apirest/user/adminadd")
+    this.webService.post(updatedUser, "http://localhost/apiFinal/apirest/user/update")
       .then((data) => {
         if (data.invalid.length > 0) {
           this.headerMsj = data.message;
@@ -100,6 +130,7 @@ export class AdminUsersRegisterComponent implements OnInit {
           this.showErrorMessages();
         } else {
           this.headerMsj = data.message;
+          this.user.employeeid = data.employeeid;
           this.showSuccessMessages();
         }
         this.showSpinner = false;
@@ -115,13 +146,13 @@ export class AdminUsersRegisterComponent implements OnInit {
   showErrorMessages() {
     $('.modal-content').removeClass('green');
     $('.modal-content').addClass('red');
-    $('#modal-admin-register').modal('open');
+    $('#modal-admin-update').modal('open');
   }
 
   showSuccessMessages() {
     $('.modal-content').removeClass('red');
     $('.modal-content').addClass('green');
-    $('#modal-admin-register').modal('open');
+    $('#modal-admin-update').modal('open');
   }
 
   
