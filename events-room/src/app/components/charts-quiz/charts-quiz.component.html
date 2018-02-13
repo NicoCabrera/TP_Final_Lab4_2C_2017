@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <div class="row">
+        <div class="col s12">
+          <h6 class="center-align text-noodle big light-blue-text">Datos del mes en curso</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <h6 class="center-align text-noodle mid">Sobre la disposición de la información del sitio web</h6>
+        </div>
+      </div>
+      <div>
+        <div style="display: block">
+          <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"></canvas>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col s12">
+          <h6 class="center-align text-noodle mid">Sobre el sistema de reservaciones</h6>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="display: block">
+        <canvas baseChart [data]="pieChartData2" [labels]="pieChartLabels2" [colors]="pieChartColors" [chartType]="pieChartType"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large waves-effect waves-light blue">
+      <i class="large material-icons">file_download</i>
+    </a>
+</div>
