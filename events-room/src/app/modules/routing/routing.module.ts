@@ -39,6 +39,7 @@ import { AdminUsersDeleteComponent } from '../../components/admin-users-delete/a
 import { AdminUsersUpdateComponent } from '../../components/admin-users-update/admin-users-update.component';
 import { AdminUsersUpdateDetailComponent } from '../../components/admin-users-update-detail/admin-users-update-detail.component';
 import { ChartsQuizComponent } from '../../components/charts-quiz/charts-quiz.component';
+import { AuthModule } from '../auth/auth.module';
 
 //DatePicker
 const appRoutes: Routes = [
@@ -143,7 +144,7 @@ const appRoutes: Routes = [
     }),
     MyDatePickerModule,
     ChartsModule
-    
+    AuthModule
   ],
   declarations: [
     HomeComponent,
