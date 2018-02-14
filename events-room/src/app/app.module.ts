@@ -5,6 +5,7 @@ import { RoutingModule } from './modules/routing/routing.module';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { WebService } from './services/web.service';
+import { ExcelService } from './services/excel.service';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { WebService } from './services/web.service';
     RoutingModule,
     HttpModule
   ],
-  providers: [WebService],
+  providers: [WebService, ExcelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

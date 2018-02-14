@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebService } from '../../services/web.service';
+import { ExcelService } from '../../services/excel.service';
 
 @Component({
   selector: 'app-charts-quiz',
@@ -28,14 +29,16 @@ export class ChartsQuizComponent implements OnInit {
       backgroundColor: ["#ef9a9a", "#ffe082", "#90caf9", "#a5d6a7"] ,
     },
   ];
-  constructor(private router: Router, private webService: WebService) {
+  constructor(private router: Router, private webService: WebService, private excelService:ExcelService) {
   }
 
   ngOnInit() {
 
   }
-
-
-
-
+  downloadFile(){
+    this.webService.post({ locationid: localStorage.getItem("locationid") }, "http://localhost/apiFinal/apirest/user/answerstoexcel").then(
+      (data) => {
+        this.excelService.exportAsExcelFile(data.answers,"ResultadoDeEncuestas");
+      });
+  }
 }
