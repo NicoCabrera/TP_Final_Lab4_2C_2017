@@ -10,11 +10,13 @@ import { WebService } from '../../services/web.service';
 export class ReservationsViewerComponent implements OnInit {
   reservations:Array<any>;
   showSpinner:boolean;
+  showNoContentMessage:boolean;
 
 
   constructor(private router: Router, private webService: WebService) {
     this.reservations = new Array<any>();
     this.showSpinner = true;
+    this.showNoContentMessage = false;
    }
 
   ngOnInit() {
@@ -22,6 +24,9 @@ export class ReservationsViewerComponent implements OnInit {
     this.webService.post({jwt:localStorage.getItem("token")}, "http://localhost/apiFinal/apirest/reservation/myreservations").then(
       (data)=>{
         this.reservations = data.reservations;
+        if(this.reservations.length == 0){
+          this.showNoContentMessage = true;
+        }
         this.showSpinner = false;
       });
   }

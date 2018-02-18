@@ -13,9 +13,11 @@ export class CancelationComponent implements OnInit {
   reservations: Array<any>;
   showSpinner: boolean;
   selectedReservation:any;
+  showNoContentMessage:boolean;
   constructor(private router: Router, private webService: WebService) {
     this.reservations = new Array<any>();
     this.showSpinner = true;
+    this.showNoContentMessage = false;
     this.initModal();
   }
 
@@ -24,6 +26,9 @@ export class CancelationComponent implements OnInit {
     this.webService.post({ locationid: localStorage.getItem("locationid") }, "http://localhost/apiFinal/apirest/reservation/reservationsbyattendantid").then(
       (data) => {
         this.reservations = data.reservations;
+        if(this.reservations.length == 0){
+          this.showNoContentMessage = true;
+        }
         this.showSpinner = false;
       });
   }

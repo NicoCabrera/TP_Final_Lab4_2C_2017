@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MapsAPILoader } from '@agm/core/services/maps-api-loader/maps-api-loader';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DirectionsRenderer } from '@ngui/map';
 declare var $;
 @Component({
   selector: 'app-event-room-viewer',
@@ -7,6 +7,15 @@ declare var $;
   styleUrls: ['./event-room-viewer.component.css']
 })
 export class EventRoomViewerComponent implements OnInit {
+  
+  @ViewChild(DirectionsRenderer) directionsRendererDirective: DirectionsRenderer;
+  directionsRenderer: google.maps.DirectionsRenderer;
+  direction: any = {
+    origin: '',
+    destination: '',
+    travelMode: 'DRIVING'
+  };
+  
   currentLatitude: number;
   currentLongitude: number;
   selectedLatitude: number;
@@ -35,6 +44,8 @@ export class EventRoomViewerComponent implements OnInit {
   changeCoords(lat,long){
     this.selectedLatitude = lat;
     this.selectedLongitude = long;
+    this.direction.destination = this.selectedLatitude + "," + this.selectedLongitude;
+    this.directionsRendererDirective['showDirections'](this.direction);
   }
 
   setCoordinates() {
@@ -42,9 +53,12 @@ export class EventRoomViewerComponent implements OnInit {
     $.getJSON('//freegeoip.net/json/?callback=?', (data) => {
       this.currentLatitude = data.latitude;
       this.currentLongitude = data.longitude;
+      this.direction.origin = this.currentLatitude + "," + this.currentLongitude;
     });
     this.selectedLatitude = -34.6667;
     this.selectedLongitude = -58.5167;
 
+    this.direction.destination = this.selectedLatitude + "," + this.selectedLongitude;
+    
   }
 }

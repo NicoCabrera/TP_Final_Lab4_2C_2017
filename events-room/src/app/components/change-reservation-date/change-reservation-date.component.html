@@ -1,13 +1,21 @@
 <div class="my-reservations">
-  <div class="container pad-top">
+  <div class="container pad-top-2">
+    <h3 class="white-text text-noodle center-align">Modificar la fecha de reserva</h3>
     <div *ngIf="showSpinner">
       <h6 class="white-text">Cargando...</h6>
       <div class="progress">
         <div class="indeterminate"></div>
       </div>
     </div>
-    <ul class="collection" *ngIf="!showSpinner">
-      <li href="#!" class="collection-item avatar transparent" *ngFor="let reservation of reservations">
+    
+    <ul class="collection with-header" *ngIf="!showSpinner">
+        <li class="collection-header grey darken-3" *ngIf="!showNoContentMessage">
+            <h5 class="center-align white-text text-noodle big">Lista de eventos pendientes</h5>
+          </li>
+          <li class="collection-header grey darken-3" *ngIf="showNoContentMessage">
+            <h5 class="center-align white-text text-noodle big">No hay eventos pendientes</h5>
+          </li>
+      <li class="collection-item avatar transparent" *ngFor="let reservation of reservations">
         <div class="row white-text">
           <div class="col m8 s12">
             <i class="material-icons circle green">event</i>

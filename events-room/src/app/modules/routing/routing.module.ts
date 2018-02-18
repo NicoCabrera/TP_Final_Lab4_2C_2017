@@ -6,6 +6,9 @@ import { HomeComponent } from '../../components/home/home.component';
 import { EventRoomViewerComponent } from '../../components/event-room-viewer/event-room-viewer.component';
 import { RegisterComponent } from '../../components/register/register.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+//Map
+import { NguiMapModule} from '@ngui/map';
+
 //Captcha
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
@@ -20,7 +23,6 @@ import { LoginComponent } from '../../components/login/login.component';
 import { VerifyJwtService } from '../../services/verify-jwt.service';
 import { LoungeReservationComponent } from '../../components/lounge-reservation/lounge-reservation.component';
 import { ReservationsViewerComponent } from '../../components/reservations-viewer/reservations-viewer.component';
-import { AgmCoreModule } from '@agm/core/core.module';
 import { MyDatePickerModule } from 'mydatepicker';
 import { GuestListEditorComponent } from '../../components/guest-list-editor/guest-list-editor.component';
 import { HomeHeaderComponent } from '../../components/home-header/home-header.component';
@@ -139,11 +141,9 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     RecaptchaModule.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAvdm1fYge8bF93jTOmaPYaSUdVbnVZam0'
-    }),
+    NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyAvdm1fYge8bF93jTOmaPYaSUdVbnVZam0'}),
     MyDatePickerModule,
-    ChartsModule
+    ChartsModule,
     AuthModule
   ],
   declarations: [

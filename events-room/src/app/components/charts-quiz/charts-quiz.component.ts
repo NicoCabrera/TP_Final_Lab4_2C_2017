@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebService } from '../../services/web.service';
 import { ExcelService } from '../../services/excel.service';
-
+declare var $;
 @Component({
   selector: 'app-charts-quiz',
   templateUrl: './charts-quiz.component.html',
@@ -36,9 +36,13 @@ export class ChartsQuizComponent implements OnInit {
 
   }
   downloadFile(){
+    $('#EXCELFAB').addClass('disabled');
+    $('#EXCELFAB').addClass('pulse');
     this.webService.post({ locationid: localStorage.getItem("locationid") }, "http://localhost/apiFinal/apirest/user/answerstoexcel").then(
       (data) => {
         this.excelService.exportAsExcelFile(data.answers,"ResultadoDeEncuestas");
+        $('#EXCELFAB').removeClass('disabled');
+        $('#EXCELFAB').removeClass('pulse');
       });
   }
 }

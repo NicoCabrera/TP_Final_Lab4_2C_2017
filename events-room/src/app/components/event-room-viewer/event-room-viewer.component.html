@@ -119,22 +119,14 @@
                   </div>
             </div>
       </div>
-      <!--
       <div class="col s12 m6">
-            <div class="section">
-              <agm-map [latitude]="currentLatitude" [longitude]="currentLongitude" [zoom]=9>
-                  <agm-marker 
-                  [latitude]="currentLatitude"
-                  [longitude]="currentLongitude">
-                  </agm-marker>
-                  <agm-marker 
-                  [latitude]="selectedLatitude"
-                  [longitude]="selectedLongitude">
-                  </agm-marker>
-              </agm-map>
-            </div>
+        <div class="section">
+          <ngui-map zoom="13" center="" class="map-height">
+            <directions-renderer panel="#my-panel" [directions-request]="direction">
+            </directions-renderer>
+          </ngui-map>
+        </div>
       </div>
-      -->
     </div>
   </div>
   </div>

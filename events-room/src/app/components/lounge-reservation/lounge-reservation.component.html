@@ -3,10 +3,11 @@
     <div class="row">
       <div class="col m2"></div>
       <div class="col s12 m8">
+        <h2 class="center-align text-noodle">Reserva</h2>
         <form class="col s12" novalidate>
           <div class="row">
             <div class="col s12 input-field">
-              <h6>Elige el salón</h6>
+              <h5 class="text-noodle">Elige el salón</h5>
               <select [(ngModel)]="reservationData.locationId" name="locationId" (change)="selectOnChange($event)">
                 <option value="151531">CABA</option>
                 <option value="265840">Zona Sur</option>
@@ -14,7 +15,7 @@
               </select>
             </div>
             <div class="col s12 input-field">
-              <h6 style="margin-bottom:18px">Elige una fecha disponible</h6>
+              <h5 class="text-noodle" style="margin-bottom:18px">Elige una fecha disponible</h5>
               <my-date-picker *ngIf="currentZoneSelected == 'Zona Norte'" name="mydateNORTE" [options]="myDatePickerOptionsNORTE" [(ngModel)]="reservedDate"></my-date-picker>
               <my-date-picker *ngIf="currentZoneSelected == 'Zona Sur'" name="mydateSUR" [options]="myDatePickerOptionsSUR" [(ngModel)]="reservedDate"></my-date-picker>
               <my-date-picker *ngIf="currentZoneSelected == 'CABA'" name="mydateCABA" [options]="myDatePickerOptions" [(ngModel)]="reservedDate"
@@ -34,7 +35,7 @@
         <div class="row" *ngIf="showGuestList">
 
           <div class="col s12">
-            <p>Ingrese el nombre y apellido del invitado, luego haga click en 'Aceptar' para agregarlo a su lista.</p>
+            <h5 class="text-noodle">Ingrese el nombre y apellido del invitado</h5>
           </div>
           <div class="input-field col s12 m6">
             <input id="first_name" type="text" class="validate" [(ngModel)]="guestName">
@@ -52,8 +53,8 @@
 
           <div class="col s12">
             <ul class="collection with-header">
-              <li class="collection-header">
-                <h6 class="center-align">Lista de invitados</h6>
+              <li class="collection-header grey darken-3">
+                  <h6 class="center-align white-text text-noodle big">LISTA DE INVITADOS</h6>
               </li>
 
               <li class="collection-item" *ngFor="let guest of reservationData.guestList;let i = index">
